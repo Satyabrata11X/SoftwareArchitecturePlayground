@@ -4,7 +4,7 @@ package com.SoftwareArchitectiurePlayGround.SoftwareArchitecturePlayground.Compo
 import com.SoftwareArchitectiurePlayGround.SoftwareArchitecturePlayground.architecture.Architecture;
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.type.ComponentType;
+
 
 @Entity
 @Table(name = "components")
