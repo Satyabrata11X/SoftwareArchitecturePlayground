@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Software Architecture Playground</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial,sans-serif;
+        }
+
+        body{
+            background:#0f172a;
+            color:white;
+            min-height:100vh;
+        }
+
+        .container{
+            max-width:1200px;
+            margin:auto;
+            padding:30px;
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:20px;
+            margin-bottom:30px;
+        }
+
+        .card{
+            background:#1e293b;
+            padding:25px;
+            border-radius:12px;
+            text-align:center;
+        }
+
+        .card h2{
+            margin-bottom:10px;
+        }
+
+        .actions{
+            display:grid;
+            grid-template-columns:repeat(3,1fr);
+            gap:15px;
+        }
+
+        button{
+            padding:15px;
+            border:none;
+            border-radius:10px;
+            background:#2563eb;
+            color:white;
+            cursor:pointer;
+            font-size:15px;
+        }
+
+        button:hover{
+            background:#1d4ed8;
+        }
+
+        .output{
+            margin-top:30px;
+            background:white;
+            color:black;
+            padding:20px;
+            border-radius:10px;
+            min-height:250px;
+            white-space:pre-wrap;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🚀 Software Architecture Playground</h1>
+
+    <div class="cards">
+
+        <div class="card">
+            <h2>🏗️ Architectures</h2>
+            <p>Manage system architectures</p>
+        </div>
+
+        <div class="card">
+            <h2>🧩 Components</h2>
+            <p>Manage architecture components</p>
+        </div>
+
+        <div class="card">
+            <h2>🔗 Connections</h2>
+            <p>Manage dependencies</p>
+        </div>
+
+    </div>
+
+    <div class="actions">
+
+        <button onclick="loadArchitectures()">
+            Load Architectures
+        </button>
+
+        <button onclick="runTrafficSimulation()">
+            Traffic Simulation
+        </button>
+
+        <button onclick="runFailureSimulation()">
+            Failure Simulation
+        </button>
+
+    </div>
+
+    <div class="output" id="output">
+        Welcome to Software Architecture Playground
+    </div>
+
+</div>
+
+<script>
+
+    const output = document.getElementById("output");
+
+    async function loadArchitectures(){
+
+        const response =
+            await fetch("/architectures");
+
+        const data = await response.json();
+
+        output.innerText =
+            JSON.stringify(data,null,2);
+    }
+
+    async function runTrafficSimulation(){
+
+        const response =
+            await fetch("/simulation/traffic?architectureId=1&users=10000");
+
+        const data = await response.json();
+
+        output.innerText =
+            JSON.stringify(data,null,2);
+    }
+
+    async function runFailureSimulation(){
+
+        const response =
+            await fetch("/failure?componentId=3");
+
+        const data = await response.json();
+
+        output.innerText =
+            JSON.stringify(data,null,2);
+    }
+
+</script>
+
+</body>
+</html>
