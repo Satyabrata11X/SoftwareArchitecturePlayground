@@ -1,281 +1,160 @@
 🚀 Software Architecture Playground
 
-A Spring Boot-based backend application that allows users to design software architectures, manage components and connections, and perform architecture simulations such as traffic analysis, failure impact analysis, and bottleneck detection.
+A backend application built using **Spring Boot** and **PostgreSQL** that allows users to model software architectures, define component relationships, and simulate system behavior under different scenarios.
 
-📌 Project Overview
+---
 
-Software systems are made up of multiple components such as API Gateways, Services, Databases, Caches, and Queues.
+## ✨ Features
 
-This project provides a platform to:
+🏗️ Architecture Management
 
-Create software architectures
-Add system components
-Define relationships between components
-Simulate traffic loads
-Analyze failure impacts
-Detect bottlenecks in the architecture
+🧩 Component Management
 
-The goal is to learn and apply backend development, database design, and system design concepts through a real-world project.
+🔗 Connection Management
 
-🏗️ Features
-1. Architecture Management
+📈 Traffic Load Simulation
 
-Create and manage software architectures.
+⚠️ Failure Impact Analysis
 
-Example:
+🎯 Bottleneck Detection
 
-Food Delivery System
-E-Commerce Platform
-Banking System
-2. Component Management
+🌐 RESTful APIs
 
-Add components to an architecture.
+🗄️ PostgreSQL Integration
 
-Supported Component Types:
+---
 
-CLIENT
-LOAD_BALANCER
-API_GATEWAY
-SERVICE
-DATABASE
-CACHE
-QUEUE
+## 🛠️ Tech Stack
 
-Example:
+☕ Java
 
-Gateway
-Order Service
-Payment Service
-PostgreSQL
-Redis Cache
-3. Connection Management
+🍃 Spring Boot
 
-Define communication paths between components.
+🗃️ Spring Data JPA
 
-Example:
+🐘 PostgreSQL
 
+📦 Maven
+
+🔧 Git & GitHub
+
+📮 Postman
+
+---
+
+## 🎯 What This Project Does
+
+The application enables users to:
+
+✅ Create software architectures
+
+✅ Add components such as API Gateways, Services, Databases, Caches, and Queues
+
+✅ Define dependencies between components
+
+✅ Simulate traffic loads across the system
+
+✅ Analyze failure impact on dependent services
+
+✅ Detect bottlenecks within the architecture
+
+---
+
+## 📊 Example Architecture
+
+```text
 Gateway
    ↓
 Order Service
    ↓
 PostgreSQL
-4. Traffic Simulation
+```
 
-Simulate user traffic and estimate component load.
+---
 
-Example:
+## 🚦 Simulations
 
-Traffic = 10,000 Users
+### 📈 Traffic Simulation
 
+Analyze component load under different traffic conditions.
+
+**Example Output**
+
+```text
 Gateway       → MEDIUM
 Order Service → HIGH
 PostgreSQL    → CRITICAL
-5. Failure Simulation
+```
 
-Analyze the impact of component failures.
+### ⚠️ Failure Simulation
 
-Example:
+Analyze dependency impact when a component fails.
 
-Gateway
-   ↓
-Order Service
-   ↓
-PostgreSQL
+**Example Output**
 
-If PostgreSQL fails:
-
+```text
 PostgreSQL → DOWN
 Order Service → IMPACTED
 Gateway → IMPACTED
-6. Bottleneck Detection
+```
+
+### 🎯 Bottleneck Detection
 
 Identify the most overloaded component in the system.
 
-Example:
+**Example Output**
 
-Traffic = 50,000 Users
-
+```text
 Bottleneck:
 PostgreSQL
-🛠️ Tech Stack
-Backend
-Java 24
-Spring Boot
-Spring Data JPA
-Hibernate
-Database
-PostgreSQL
-Build Tool
-Maven
-Testing
-Postman
-Version Control
-Git
-GitHub
-📂 Project Structure
-src/main/java
+```
 
-├── architecture
-│   ├── Architecture.java
-│   ├── ArchitectureRepository.java
-│   ├── ArchitectureService.java
-│   └── ArchitectureController.java
-│
-├── component
-│   ├── Component.java
-│   ├── ComponentType.java
-│   ├── ComponentRepository.java
-│   ├── ComponentService.java
-│   └── ComponentController.java
-│
-├── connection
-│   ├── Connection.java
-│   ├── ConnectionRepository.java
-│   ├── ConnectionService.java
-│   └── ConnectionController.java
-│
-├── simulation
-│   ├── SimulationResult.java
-│   ├── SimulationService.java
-│   ├── SimulationController.java
-│   ├── FailureSimulationResult.java
-│   ├── FailureSimulationService.java
-│   ├── FailureSimulationController.java
-│   ├── BottleneckResult.java
-│   ├── BottleneckService.java
-│   └── BottleneckController.java
-🗄️ Database Design
-Architecture Table
-architectures
-Column	Type
-id	BIGINT
-name	VARCHAR
-description	VARCHAR
-Component Table
-components
-Column	Type
-id	BIGINT
-name	VARCHAR
-type	VARCHAR
-architecture_id	BIGINT
-Connection Table
-connections
-Column	Type
-id	BIGINT
-source_component_id	BIGINT
-target_component_id	BIGINT
-🔗 Example Architecture
-Food Delivery System
+---
 
-Gateway
-   ↓
-Order Service
-   ↓
-PostgreSQL
-📡 REST API Endpoints
-Architecture APIs
-Create Architecture
-POST /architectures
-Get All Architectures
-GET /architectures
-Get Architecture By ID
-GET /architectures/{id}
-Delete Architecture
-DELETE /architectures/{id}
-Component APIs
-Create Component
-POST /components
-Get All Components
-GET /components
-Get Component By ID
-GET /components/{id}
-Get Components By Architecture
-GET /components/architecture/{architectureId}
-Delete Component
-DELETE /components/{id}
-Connection APIs
-Create Connection
-POST /connections
-Get All Connections
-GET /connections
-Get Connection By ID
-GET /connections/{id}
-Delete Connection
-DELETE /connections/{id}
-Simulation APIs
-Traffic Simulation
-GET /simulation/traffic?architectureId=1&users=10000
-Failure Simulation
-GET /failure?componentId=3
-Bottleneck Detection
-GET /bottleneck?architectureId=1&users=10000
-🧪 Sample Output
-Traffic Simulation
-[
-  {
-    "componentName": "Gateway",
-    "loadPercentage": 50.0,
-    "status": "MEDIUM"
-  },
-  {
-    "componentName": "Order Service",
-    "loadPercentage": 80.0,
-    "status": "HIGH"
-  }
-]
-Failure Simulation
-[
-  {
-    "componentName": "PostgreSQL",
-    "status": "DOWN"
-  },
-  {
-    "componentName": "Order Service",
-    "status": "IMPACTED"
-  },
-  {
-    "componentName": "Gateway",
-    "status": "IMPACTED"
-  }
-]
-Bottleneck Detection
-{
-  "componentName": "PostgreSQL",
-  "loadPercentage": 100.0,
-  "status": "CRITICAL"
-}
-🎯 Learning Outcomes
+## 📚 Key Concepts Learned
 
-This project helped me gain practical experience with:
+🔹 Spring Boot Development
 
-Spring Boot Development
-REST API Design
-PostgreSQL Database Design
-JPA Relationships
-Dependency Injection
-Service Layer Architecture
-System Design Concepts
-Traffic Simulation
-Failure Analysis
-Bottleneck Detection
-🚀 Future Enhancements
-React Frontend
-Interactive Architecture Diagram Builder
-Drag-and-Drop Components
-Swagger/OpenAPI Documentation
-Authentication & Authorization
-Docker Deployment
-Microservices Support
-Kafka Event Simulation
-Advanced Failure Propagation
-Real-Time Monitoring Dashboard
+🔹 REST API Design
 
-👨‍💻 Author
+🔹 Database Modeling
 
-Satyabrata
+🔹 JPA Relationships
 
-B.Tech Computer Science Engineering Student
+🔹 Dependency Injection
 
-Passionate about Backend Development, System Design, and Software Engineering.
+🔹 System Design Fundamentals
 
-⭐ If you found this project interesting, feel free to star the repository and connect with me on LinkedIn.
+🔹 Traffic Simulation
+
+🔹 Failure Analysis
+
+🔹 Bottleneck Detection
+
+---
+
+## 🚀 Future Enhancements
+
+🎨 React Frontend
+
+📊 Interactive Architecture Visualization
+
+📖 Swagger/OpenAPI Documentation
+
+🐳 Docker Deployment
+
+🔐 Authentication & Authorization
+
+⚡ Advanced Simulation Engine
+
+☁️ Microservices Support
+
+---
+
+## 👨‍💻 Author
+
+**Satya Brata**
+
+B.Tech CSE Student | Java Backend Developer | Software Engineering Enthusiast
+
+⭐ If you found this project interesting, consider giving it a star!
