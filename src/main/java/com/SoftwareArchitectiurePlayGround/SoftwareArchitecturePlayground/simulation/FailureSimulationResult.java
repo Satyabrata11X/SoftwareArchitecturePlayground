@@ -4,7 +4,7 @@ package com.SoftwareArchitectiurePlayGround.SoftwareArchitecturePlayground.simul
 import jakarta.persistence.Entity;
 import lombok.*;
 
-@Entity
+
 @Setter
 @Getter
 @NoArgsConstructor
