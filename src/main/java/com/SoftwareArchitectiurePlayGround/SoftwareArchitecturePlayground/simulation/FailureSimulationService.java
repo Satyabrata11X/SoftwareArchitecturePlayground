@@ -41,23 +41,34 @@ public class FailureSimulationService {
                         .build()
         );
 
-        List<Connection> connections = connectionRepository.findAll();
-
-        for (Connection connection : connections) {
-
-            if (connection.getTargetComponent().getId().equals(componentId)) {
-
-                results.add(
-                        FailureSimulationResult.builder()
-                                .componentName(
-                                        connection.getSourceComponent().getName()
-                                )
-                                .status("IMPACTED")
-                                .build()
-                );
-            }
-        }
+        propagateFailure(componentId, results);
 
         return results;
+    }
+
+    private void propagateFailure(
+            Long componentId,
+            List<FailureSimulationResult> results) {
+
+        List<Connection> dependencies =
+                connectionRepository.findByTargetComponentId(componentId);
+
+        for (Connection connection : dependencies) {
+
+            Component impactedComponent =
+                    connection.getSourceComponent();
+
+            results.add(
+                    FailureSimulationResult.builder()
+                            .componentName(impactedComponent.getName())
+                            .status("IMPACTED")
+                            .build()
+            );
+
+            propagateFailure(
+                    impactedComponent.getId(),
+                    results
+            );
+        }
     }
 }
