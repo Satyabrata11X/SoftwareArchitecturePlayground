@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Connection Management</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Common CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- Connection CSS -->
+    <link rel="stylesheet" th:href="@{/css/connection.css}">
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-diagram-project"></i>
+
+        <h3>Architecture Playground</h3>
+
+    </div>
+
+    <ul>
+
+        <li>
+            <a th:href="@{/}">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/architectures-page}">
+                <i class="fa-solid fa-building"></i>
+                Architectures
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/components-page}">
+                <i class="fa-solid fa-cubes"></i>
+                Components
+            </a>
+        </li>
+
+        <li class="active">
+            <a th:href="@{/connections-page}">
+                <i class="fa-solid fa-link"></i>
+                Connections
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/simulation-page}">
+                <i class="fa-solid fa-chart-line"></i>
+                Simulation
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- Main Content -->
+
+<div class="main-content">
+
+    <div class="topbar">
+
+        <div>
+
+            <h2>Connection Management</h2>
+
+            <p>Create connections between software components.</p>
+
+        </div>
+
+        <div class="profile">
+
+            <i class="fa-solid fa-user-circle"></i>
+
+            <span>Satya Brata</span>
+
+        </div>
+
+    </div>
+
+    <!-- Create Connection -->
+
+    <div class="content-box">
+
+        <h3>Create New Connection</h3>
+
+        <form id="connectionForm">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+
+                    Source Component
+
+                </label>
+
+                <select
+                        id="sourceComponent"
+                        class="form-select"
+                        required>
+
+                    <option value="">Select Source Component</option>
+
+                </select>
+
+            </div>
+
+            <div class="mb-4">
+
+                <label class="form-label">
+
+                    Target Component
+
+                </label>
+
+                <select
+                        id="targetComponent"
+                        class="form-select"
+                        required>
+
+                    <option value="">Select Target Component</option>
+
+                </select>
+
+            </div>
+
+            <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                <i class="fa-solid fa-link"></i>
+
+                Create Connection
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Connections Table -->
+
+    <div class="content-box">
+
+        <h3>Existing Connections</h3>
+
+        <div class="table-responsive">
+
+            <table class="table table-dark table-hover align-middle">
+
+                <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Source Component</th>
+
+                    <th>Target Component</th>
+
+                    <th>Delete</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="connectionTable">
+
+                <!-- JavaScript will populate -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script th:src="@{/js/connection.js}"></script>
+
+</body>
+
+</html>

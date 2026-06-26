@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Architecture Management</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/architecture.css}">
+
+</head>
+
+<body>
+
+<!-- ================= Sidebar ================= -->
+
+<div class="sidebar">
+
+    <div class="logo">
+
+        <i class="fa-solid fa-diagram-project"></i>
+
+        <h3>Architecture Playground</h3>
+
+    </div>
+
+    <ul>
+
+        <li>
+            <a th:href="@{/}">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li class="active">
+            <a th:href="@{/architectures-page}">
+                <i class="fa-solid fa-building"></i>
+                Architectures
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/components-page}">
+                <i class="fa-solid fa-cubes"></i>
+                Components
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/connections-page}">
+                <i class="fa-solid fa-link"></i>
+                Connections
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/simulation-page}">
+                <i class="fa-solid fa-chart-line"></i>
+                Simulation
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- ================= Main Content ================= -->
+
+<div class="main-content">
+
+    <!-- Topbar -->
+
+    <div class="topbar">
+
+        <div>
+
+            <h2>Architecture Management</h2>
+
+            <p>Create and manage software architectures.</p>
+
+        </div>
+
+        <div class="profile">
+
+            <i class="fa-solid fa-user-circle"></i>
+
+            <span>Satya Brata</span>
+
+        </div>
+
+    </div>
+
+    <!-- Create Form -->
+
+    <div class="content-box">
+
+        <h3>Create New Architecture</h3>
+
+        <form id="architectureForm">
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Architecture Name
+                </label>
+
+                <input
+                        id="architectureName"
+                        type="text"
+                        class="form-control"
+                        placeholder="Enter Architecture Name"
+                        required>
+
+            </div>
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Description
+                </label>
+
+                <textarea
+                        id="architectureDescription"
+                        class="form-control"
+                        rows="4"
+                        placeholder="Enter Architecture Description"></textarea>
+
+            </div>
+
+            <button
+                    type="submit"
+                    class="btn btn-primary">
+
+                <i class="fa-solid fa-plus"></i>
+
+                Create Architecture
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- Architecture Table -->
+
+    <div class="content-box">
+
+        <h3>Architecture List</h3>
+
+        <div class="table-responsive">
+
+            <table class="table table-dark table-hover align-middle">
+
+                <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Name</th>
+
+                    <th>Description</th>
+
+                    <th width="120">Action</th>
+
+                </tr>
+
+                </thead>
+
+                <tbody id="architectureTable">
+
+                <!-- JavaScript will populate rows -->
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Architecture JS -->
+
+<script th:src="@{/js/architecture.js}"></script>
+
+</body>
+
+</html>

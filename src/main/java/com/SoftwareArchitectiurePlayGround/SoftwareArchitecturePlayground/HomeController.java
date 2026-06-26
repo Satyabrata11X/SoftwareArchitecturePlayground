@@ -10,4 +10,25 @@ public class HomeController {
     public String home() {
         return "index";
     }
+
+    @GetMapping("/architectures-page")
+    public String architectures() {
+        return "architectures";
+    }
+
+    @GetMapping("/components-page")
+    public String components() {
+        return "components";
+    }
+
+    @GetMapping("/connections-page")
+    public String connections() {
+        return "connections";
+    }
+
+    @GetMapping("/simulation-page")
+    public String simulation() {
+        return "simulation";
+    }
+
 }
