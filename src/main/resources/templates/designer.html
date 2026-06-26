@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Architecture Designer</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Global CSS -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <!-- Designer CSS -->
+    <link rel="stylesheet" th:href="@{/css/designer.css}">
+
+</head>
+
+<body>
+
+<!-- Sidebar -->
+
+<div class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-diagram-project"></i>
+        <h3>Architecture Playground</h3>
+    </div>
+
+    <ul>
+
+        <li>
+            <a th:href="@{/}">
+                <i class="fa-solid fa-house"></i>
+                Dashboard
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/architectures-page}">
+                <i class="fa-solid fa-building"></i>
+                Architectures
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/components-page}">
+                <i class="fa-solid fa-cubes"></i>
+                Components
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/connections-page}">
+                <i class="fa-solid fa-link"></i>
+                Connections
+            </a>
+        </li>
+
+        <li>
+            <a th:href="@{/simulation-page}">
+                <i class="fa-solid fa-chart-line"></i>
+                Simulation
+            </a>
+        </li>
+
+        <li class="active">
+            <a th:href="@{/designer-page}">
+                <i class="fa-solid fa-diagram-project"></i>
+                Designer
+            </a>
+        </li>
+
+    </ul>
+
+</div>
+
+<!-- Main Content -->
+
+<div class="main-content">
+
+    <div class="topbar">
+
+        <div>
+
+            <h2>Architecture Designer</h2>
+
+            <p>Create and visualize your software architecture.</p>
+
+        </div>
+
+        <div class="profile">
+
+            <i class="fa-solid fa-user-circle"></i>
+
+            <span>Satya Brata</span>
+
+        </div>
+
+    </div>
+
+    <!-- Toolbar -->
+
+    <div class="toolbar">
+
+        <button class="btn btn-primary">
+            <i class="fa-solid fa-user"></i>
+            Client
+        </button>
+
+        <button class="btn btn-primary">
+            <i class="fa-solid fa-globe"></i>
+            Gateway
+        </button>
+
+        <button class="btn btn-primary">
+            <i class="fa-solid fa-server"></i>
+            Service
+        </button>
+
+        <button class="btn btn-primary">
+            <i class="fa-solid fa-database"></i>
+            Database
+        </button>
+
+        <button class="btn btn-primary">
+            <i class="fa-solid fa-bolt"></i>
+            Cache
+        </button>
+
+        <button class="btn btn-primary">
+            <i class="fa-solid fa-list"></i>
+            Queue
+        </button>
+
+    </div>
+
+    <!-- Canvas -->
+
+    <div id="designerCanvas">
+
+        <div class="canvas-placeholder">
+
+            <i class="fa-solid fa-diagram-project"></i>
+
+            <h3>Architecture Canvas</h3>
+
+            <p>
+
+                Drag and drop components here.
+
+            </p>
+
+            <small>
+
+                (Drag & Drop coming in the next step)
+
+            </small>
+
+        </div>
+
+    </div>
+
+    <!-- Footer Buttons -->
+
+    <div class="designer-actions">
+
+        <button class="btn btn-success">
+            <i class="fa-solid fa-floppy-disk"></i>
+            Save
+        </button>
+
+        <button class="btn btn-warning">
+            <i class="fa-solid fa-folder-open"></i>
+            Load
+        </button>
+
+        <button class="btn btn-danger">
+            <i class="fa-solid fa-trash"></i>
+            Clear
+        </button>
+
+    </div>
+
+</div>
+
+<script th:src="@{/js/designer.js}"></script>
+
+</body>
+
+</html>
