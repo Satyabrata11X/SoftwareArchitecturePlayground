@@ -12,6 +12,9 @@ public interface ConnectionRepository extends JpaRepository<Connection, Long> {
 
     List<Connection> findBySourceComponentId(Long sourceComponentId);
 
+    // NEW
+    List<Connection> findBySourceComponentArchitectureId(Long architectureId);
+
     @Transactional
     @Modifying
     void deleteBySourceComponentId(Long componentId);

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
@@ -90,6 +91,8 @@
 
 <div class="main-content">
 
+    <!-- Top Bar -->
+
     <div class="topbar">
 
         <div>
@@ -110,93 +113,240 @@
 
     </div>
 
-    <!-- Toolbar -->
+    <!-- Architecture Selector -->
 
-    <div class="toolbar">
+    <div class="designer-header">
 
-        <button class="btn btn-primary">
-            <i class="fa-solid fa-user"></i>
-            Client
-        </button>
+        <div class="row">
 
-        <button class="btn btn-primary">
-            <i class="fa-solid fa-globe"></i>
-            Gateway
-        </button>
+            <div class="col-md-6">
 
-        <button class="btn btn-primary">
-            <i class="fa-solid fa-server"></i>
-            Service
-        </button>
+                <label class="form-label">
 
-        <button class="btn btn-primary">
-            <i class="fa-solid fa-database"></i>
-            Database
-        </button>
+                    Select Architecture
 
-        <button class="btn btn-primary">
-            <i class="fa-solid fa-bolt"></i>
-            Cache
-        </button>
+                </label>
 
-        <button class="btn btn-primary">
-            <i class="fa-solid fa-list"></i>
-            Queue
-        </button>
+                <select
+                        id="architectureSelect"
+                        class="form-select">
 
-    </div>
+                    <option value="">
 
-    <!-- Canvas -->
+                        Loading...
 
-    <div id="designerCanvas">
+                    </option>
 
-        <div class="canvas-placeholder">
+                </select>
 
-            <i class="fa-solid fa-diagram-project"></i>
-
-            <h3>Architecture Canvas</h3>
-
-            <p>
-
-                Drag and drop components here.
-
-            </p>
-
-            <small>
-
-                (Drag & Drop coming in the next step)
-
-            </small>
+            </div>
 
         </div>
 
     </div>
 
-    <!-- Footer Buttons -->
+   <div class="toolbar">
 
-    <div class="designer-actions">
+    <button
+        id="addComponentBtn"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#addComponentModal">
 
-        <button class="btn btn-success">
-            <i class="fa-solid fa-floppy-disk"></i>
-            Save
-        </button>
+    <i class="fa-solid fa-plus"></i>
 
-        <button class="btn btn-warning">
-            <i class="fa-solid fa-folder-open"></i>
-            Load
-        </button>
+    Add Component
 
-        <button class="btn btn-danger">
-            <i class="fa-solid fa-trash"></i>
-            Clear
-        </button>
+</button>
+
+    <button id="addConnectionBtn" class="btn btn-info">
+        <i class="fa-solid fa-link"></i>
+        Add Connection
+    </button>
+
+    <button id="autoLayoutBtn" class="btn btn-warning">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        Auto Layout
+    </button>
+
+    <button id="saveLayoutBtn" class="btn btn-success">
+        <i class="fa-solid fa-floppy-disk"></i>
+        Save Layout
+    </button>
+
+    <button id="loadLayoutBtn" class="btn btn-secondary">
+        <i class="fa-solid fa-folder-open"></i>
+        Load Layout
+    </button>
+
+    <button id="simulationBtn" class="btn btn-danger">
+        <i class="fa-solid fa-play"></i>
+        Run Simulation
+    </button>
+
+</div>
+    <!-- Designer Canvas -->
+
+    <div id="designerCanvas">
+
+        <!-- JavaScript will dynamically create nodes here -->
+
+    </div>
+
+    <!-- ==========================================
+     Add Component Modal
+========================================== -->
+
+<div class="modal fade"
+     id="addComponentModal"
+     tabindex="-1"
+     aria-hidden="true">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content bg-dark text-white">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Add Component
+
+                </h5>
+
+                <button
+                        type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal">
+
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Component Name
+
+                    </label>
+
+                    <input
+                            id="componentName"
+                            type="text"
+                            class="form-control"
+                            placeholder="Enter component name">
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+
+                        Component Type
+
+                    </label>
+
+                    <select
+                            id="componentType"
+                            class="form-select">
+
+                        <option value="CLIENT">Client</option>
+
+                        <option value="LOAD_BALANCER">Load Balancer</option>
+
+                        <option value="API_GATEWAY">API Gateway</option>
+
+                        <option value="SERVICE">Service</option>
+
+                        <option value="DATABASE">Database</option>
+
+                        <option value="CACHE">Cache</option>
+
+                        <option value="QUEUE">Queue</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button
+                        id="createComponentBtn"
+                        class="btn btn-primary">
+
+                    Create Component
+
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
 
 </div>
 
-<script th:src="@{/js/designer.js}"></script>
+  
+
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- jsPlumb -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.15.6/js/jsplumb.min.js"></script>
+
+<!-- Designer Modules -->
+<script th:src="@{/js/designer/icons.js}"></script>
+<script th:src="@{/js/designer/layout.js}"></script>
+...
+<script th:src="@{/js/designer/add-component.js}"></script>
+<script th:src="@{/js/designer/designer.js}"></script>
+
+<!-- jsPlumb -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.15.6/js/jsplumb.min.js"></script>
+
+<!-- Designer Modules -->
+
+<script th:src="@{/js/designer/icons.js}"></script>
+
+<script th:src="@{/js/designer/layout.js}"></script>
+
+<script th:src="@{/js/designer/drag.js}"></script>
+
+<script th:src="@{/js/designer/connections.js}"></script>
+
+<script th:src="@{/js/designer/save-layout.js}"></script>
+
+<script th:src="@{/js/designer/load-layout.js}"></script>
+
+<script th:src="@{/js/designer/simulation.js}"></script>
+
+<script th:src="@{/js/designer/add-component.js}"></script>
+
+<!-- Main Controller -->
+
+<script th:src="@{/js/designer/designer.js}"></script>
+
 
 </body>
 
 </html>
+

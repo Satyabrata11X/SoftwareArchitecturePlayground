@@ -25,7 +25,16 @@ public class ConnectionService {
         return connectionRepository.findById(id).orElse(null);
     }
 
+    // NEW
+    public List<Connection> getConnectionsByArchitecture(Long architectureId) {
+
+        return connectionRepository
+                .findBySourceComponentArchitectureId(architectureId);
+
+    }
+
     public void deleteConnection(Long id) {
         connectionRepository.deleteById(id);
     }
+
 }

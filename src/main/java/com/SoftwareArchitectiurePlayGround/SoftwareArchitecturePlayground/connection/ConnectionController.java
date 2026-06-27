@@ -6,6 +6,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/connections")
+@CrossOrigin("*")
 public class ConnectionController {
 
     private final ConnectionService connectionService;
@@ -29,8 +30,19 @@ public class ConnectionController {
         return connectionService.getConnectionById(id);
     }
 
+    // NEW ENDPOINT
+    @GetMapping("/architecture/{architectureId}")
+    public List<Connection> getConnectionsByArchitecture(
+            @PathVariable Long architectureId) {
+
+        return connectionService
+                .getConnectionsByArchitecture(architectureId);
+
+    }
+
     @DeleteMapping("/{id}")
     public void deleteConnection(@PathVariable Long id) {
         connectionService.deleteConnection(id);
     }
+
 }
