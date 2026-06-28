@@ -163,6 +163,74 @@
 }
 
 /* ==========================================
+   Delete Button
+========================================== */
+
+.node .delete-btn{
+
+    position:absolute;
+
+    top:-10px;
+
+    right:-10px;
+
+    width:30px;
+
+    height:30px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#ef4444;
+
+    color:white;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    cursor:pointer;
+
+    opacity:0;
+
+    transform:scale(.8);
+
+    transition:.25s;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.35);
+
+    z-index:100;
+
+}
+
+.node:hover .delete-btn{
+
+    opacity:1;
+
+    transform:scale(1);
+
+}
+
+.node .delete-btn:hover{
+
+    background:#dc2626;
+
+    transform:scale(1.15);
+
+}
+
+.node .delete-btn i{
+
+    font-size:13px;
+
+    pointer-events:none;
+
+}
+
+/* ==========================================
    Footer
 ========================================== */
 

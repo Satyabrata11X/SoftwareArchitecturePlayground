@@ -64,7 +64,8 @@ async function loadArchitectures() {
 
     try {
 
-        const response = await fetch("/architectures");
+        const response =
+            await fetch("/architectures");
 
         if (!response.ok) {
 
@@ -72,7 +73,8 @@ async function loadArchitectures() {
 
         }
 
-        const architectures = await response.json();
+        const architectures =
+            await response.json();
 
         const select =
             document.getElementById("architectureSelect");
@@ -114,27 +116,69 @@ async function loadComponents(architectureId) {
 
         clearCanvas();
 
-        const response =
+        // Load Components
+
+        const componentResponse =
             await fetch(`/components/architecture/${architectureId}`);
 
-        if (!response.ok) {
+        if (!componentResponse.ok) {
 
             throw new Error("Unable to load components.");
 
         }
 
         const components =
-            await response.json();
+            await componentResponse.json();
 
         console.log("Components:", components);
 
-       components.forEach(component => {
+        // Load Connections
 
-    createNode(component, components);
+        const connections =
+            await loadConnections(architectureId);
 
-});
+        console.log("Connections:", connections);
 
-        await loadConnections(architectureId);
+        // Build Graph
+
+        const graph =
+            buildGraph(components, connections);
+
+        console.log("Architecture Graph:", graph);
+
+        // Find Root
+
+        const root =
+            findRootNode(graph);
+
+        console.log("Root:", root);
+
+        // Calculate Levels
+
+        calculateLevels(graph, root);
+
+        // Group Nodes
+
+        const levels =
+            getNodesByLevel(graph);
+
+        console.log("Levels:", levels);
+
+        // Create Nodes
+
+        components.forEach(component => {
+
+            createNode(component, graph);
+
+        });
+
+        // Draw Connections
+
+        connections.forEach(connection => {
+
+            drawConnection(connection);
+
+        });
 
     }
 
@@ -150,7 +194,7 @@ async function loadComponents(architectureId) {
 // Create Node
 // ==========================================
 
-function createNode(component, components) {
+function createNode(component, graph) {
 
     const canvas =
         document.getElementById("designerCanvas");
@@ -163,17 +207,24 @@ function createNode(component, components) {
     node.id =
         "component-" + component.id;
 
-    node.innerHTML = `
+   node.innerHTML = `
 
-        <i class="${getComponentIcon(component.type)}"></i>
+    <button class="delete-btn">
 
-        <span>${component.name}</span>
+        <i class="fa-solid fa-trash"></i>
 
-    `;
+    </button>
 
-    // Layout Module
-const position =
-    getNodePosition(component, components);
+    <i class="${getComponentIcon(component.type)}"></i>
+
+    <span>${component.name}</span>
+
+`;
+
+    // Layout
+
+    const position =
+        getNodePosition(component, graph);
 
     node.style.left =
         position.left + "px";
@@ -183,7 +234,87 @@ const position =
 
     canvas.appendChild(node);
 
-    // Drag Module
+ const deleteButton =
+    node.querySelector(".delete-btn");
+
+deleteButton.addEventListener("click", async (event) => {
+
+    event.stopPropagation();
+
+    const result = await Swal.fire({
+
+        title: "Delete Component?",
+
+        text: `Delete "${component.name}"?`,
+
+        icon: "warning",
+
+        showCancelButton: true,
+
+        confirmButtonColor: "#dc3545",
+
+        confirmButtonText: "Delete",
+
+        cancelButtonText: "Cancel"
+
+    });
+
+    if (!result.isConfirmed) {
+
+        return;
+
+    }
+
+    try {
+
+        const response =
+            await fetch(`/components/${component.id}`, {
+
+                method: "DELETE"
+
+            });
+
+        if (!response.ok) {
+
+            throw new Error();
+
+        }
+
+        Swal.fire({
+
+            icon: "success",
+
+            title: "Component Deleted",
+
+            timer: 1200,
+
+            showConfirmButton: false
+
+        });
+
+        const architectureId =
+            document.getElementById("architectureSelect").value;
+
+        loadComponents(architectureId);
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        Swal.fire({
+
+            icon: "error",
+
+            title: "Unable to delete component."
+
+        });
+
+    }
+
+});
+    // Enable Dragging
 
     enableDragging(node);
 

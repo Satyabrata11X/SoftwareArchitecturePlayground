@@ -13,19 +13,59 @@ public class ConnectionService {
         this.connectionRepository = connectionRepository;
     }
 
+
     public Connection createConnection(Connection connection) {
+
+        Long sourceId = connection.getSourceComponent().getId();
+
+        Long targetId = connection.getTargetComponent().getId();
+
+        // Prevent self connection
+
+        if (sourceId.equals(targetId)) {
+
+            throw new RuntimeException(
+                    "A component cannot connect to itself."
+            );
+
+        }
+
+        // Prevent duplicate connection
+
+        boolean exists =
+                connectionRepository
+                        .existsBySourceComponentIdAndTargetComponentId(
+                                sourceId,
+                                targetId
+                        );
+
+        if (exists) {
+
+            throw new RuntimeException(
+                    "Connection already exists."
+            );
+
+        }
+
         return connectionRepository.save(connection);
+
     }
+
 
     public List<Connection> getAllConnections() {
+
         return connectionRepository.findAll();
+
     }
+
 
     public Connection getConnectionById(Long id) {
+
         return connectionRepository.findById(id).orElse(null);
+
     }
 
-    // NEW
+
     public List<Connection> getConnectionsByArchitecture(Long architectureId) {
 
         return connectionRepository
@@ -33,8 +73,11 @@ public class ConnectionService {
 
     }
 
+
     public void deleteConnection(Long id) {
+
         connectionRepository.deleteById(id);
+
     }
 
 }

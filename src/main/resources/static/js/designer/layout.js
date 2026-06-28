@@ -1,112 +1,73 @@
 // ==========================================
-// Professional Layout Engine
+// Graph Layout Engine
 // ==========================================
 
-function getNodePosition(component, components) {
+console.log("Graph Layout Loaded");
 
-    // Canvas Settings
-    const canvasWidth = 1500;
+// ==========================================
+// Get Node Position
+// ==========================================
 
-    const centerX = canvasWidth / 2;
+function getNodePosition(component, graph) {
 
-    // Group Components
-    const services =
-        components.filter(c => c.type === "SERVICE");
+    const canvas =
+    document.getElementById("designerCanvas");
 
-    const serviceIndex =
-        services.findIndex(c => c.id === component.id);
+const canvasWidth =
+    canvas.clientWidth;
 
-    const totalServices =
-        services.length;
+    const topMargin = 50;
 
-    // Service Layout
-    const spacing = 300;
+    const verticalSpacing = 180;
+
+    const horizontalSpacing = 280;
+
+    // Current Node
+
+    const currentNode = graph[component.id];
+
+    const currentLevel = currentNode.level;
+
+    // All nodes in same level
+
+    const levelNodes = Object.values(graph).filter(node => {
+
+        return node.level === currentLevel;
+
+    });
+
+    // Sort nodes for consistent layout
+
+    levelNodes.sort((a, b) => {
+
+        return a.component.id - b.component.id;
+
+    });
+
+    // Index inside level
+
+    const index = levelNodes.findIndex(node => {
+
+        return node.component.id === component.id;
+
+    });
+
+    // Calculate total width occupied
+
+    const totalWidth =
+        (levelNodes.length - 1) * horizontalSpacing;
+
+    // Start from center
 
     const startX =
-        centerX - ((totalServices - 1) * spacing) / 2;
+        (canvasWidth - totalWidth) / 2;
 
-    switch (component.type) {
+    return {
 
-        case "CLIENT":
+        left: startX + (index * horizontalSpacing),
 
-            return {
+        top: topMargin + (currentLevel * verticalSpacing)
 
-                left: centerX - 120,
-
-                top: 40
-
-            };
-
-        case "LOAD_BALANCER":
-
-            return {
-
-                left: centerX - 120,
-
-                top: 170
-
-            };
-
-        case "API_GATEWAY":
-
-            return {
-
-                left: centerX - 120,
-
-                top: 310
-
-            };
-
-        case "SERVICE":
-
-            return {
-
-                left: startX + (serviceIndex * spacing),
-
-                top: 520
-
-            };
-
-        case "CACHE":
-
-            return {
-
-                left: centerX - 500,
-
-                top: 760
-
-            };
-
-        case "QUEUE":
-
-            return {
-
-                left: centerX - 120,
-
-                top: 760
-
-            };
-
-        case "DATABASE":
-
-            return {
-
-                left: centerX + 260,
-
-                top: 760
-
-            };
-
-        default:
-
-            return {
-
-                left: 100,
-
-                top: 100
-
-            };
-
-    }
+    };
 
 }

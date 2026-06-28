@@ -4,6 +4,9 @@
 
 async function loadConnections(architectureId) {
 
+    // Prevent connection-builder from firing
+    loadingConnections = true;
+
     try {
 
         const response =
@@ -15,21 +18,29 @@ async function loadConnections(architectureId) {
 
         }
 
-        const connections = await response.json();
+        const connections =
+            await response.json();
 
-        console.log("Connections :", connections);
+        console.log("Connections:", connections);
 
-        connections.forEach(connection => {
+        // ONLY return the connections.
+        // Do NOT draw them here.
 
-            drawConnection(connection);
-
-        });
+        return connections;
 
     }
 
     catch (error) {
 
         console.error(error);
+
+        return [];
+
+    }
+
+    finally {
+
+        loadingConnections = false;
 
     }
 
@@ -47,43 +58,63 @@ function drawConnection(connection) {
     const targetId =
         "component-" + connection.targetComponent.id;
 
+    // Ensure both nodes exist
+
     if (
-        document.getElementById(sourceId) &&
-        document.getElementById(targetId)
+        !document.getElementById(sourceId) ||
+        !document.getElementById(targetId)
     ) {
 
-        jsPlumb.connect({
+        console.warn(
+            "Connection skipped:",
+            sourceId,
+            "->",
+            targetId
+        );
 
-            source: sourceId,
-
-            target: targetId,
-
-            anchors: ["Bottom", "Top"],
-
-            connector: [
-
-                "Flowchart",
-
-                {
-
-                    cornerRadius: 10
-
-                }
-
-            ],
-
-            paintStyle: {
-
-                stroke: "#3b82f6",
-
-                strokeWidth: 3
-
-            },
-
-            endpoint: "Blank"
-
-        });
+        return;
 
     }
+
+    const jsConnection = jsPlumb.connect({
+
+        source: sourceId,
+
+        target: targetId,
+
+        anchors: ["Bottom", "Top"],
+
+        connector: [
+
+            "Flowchart",
+
+            {
+
+                cornerRadius: 10,
+
+                stub: 30
+
+            }
+
+        ],
+
+        paintStyle: {
+
+            stroke: "#3b82f6",
+
+            strokeWidth: 3
+
+        },
+
+        endpoint: "Blank"
+
+    });
+
+    // Mark as loaded from database
+    jsConnection.data = {
+
+        loaded: true
+
+    };
 
 }

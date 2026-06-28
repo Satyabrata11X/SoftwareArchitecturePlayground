@@ -26,9 +26,21 @@ async function createComponent() {
     const type =
         document.getElementById("componentType").value;
 
+    // ==========================================
+    // Validation
+    // ==========================================
+
     if (architectureId === "") {
 
-        alert("Please select an architecture.");
+        Swal.fire({
+
+            icon: "warning",
+
+            title: "Architecture Required",
+
+            text: "Please select an architecture."
+
+        });
 
         return;
 
@@ -36,7 +48,15 @@ async function createComponent() {
 
     if (name === "") {
 
-        alert("Component name is required.");
+        Swal.fire({
+
+            icon: "warning",
+
+            title: "Component Name Required",
+
+            text: "Please enter a component name."
+
+        });
 
         return;
 
@@ -58,20 +78,45 @@ async function createComponent() {
 
     try {
 
-        const response =
-            await fetch("/components", {
+        const response = await fetch("/components", {
 
-                method: "POST",
+            method: "POST",
 
-                headers: {
+            headers: {
 
-                    "Content-Type": "application/json"
+                "Content-Type": "application/json"
 
-                },
+            },
 
-                body: JSON.stringify(component)
+            body: JSON.stringify(component)
+
+        });
+
+        // ==========================================
+        // Duplicate Component
+        // ==========================================
+
+        if (response.status === 409) {
+
+            const message = await response.text();
+
+            Swal.fire({
+
+                icon: "error",
+
+                title: "Duplicate Component",
+
+                text: message
 
             });
+
+            return;
+
+        }
+
+        // ==========================================
+        // Other Errors
+        // ==========================================
 
         if (!response.ok) {
 
@@ -79,21 +124,33 @@ async function createComponent() {
 
         }
 
-        // Close modal
+        // ==========================================
+        // Success
+        // ==========================================
 
         bootstrap.Modal
             .getInstance(document.getElementById("addComponentModal"))
             .hide();
 
-        // Clear fields
-
         document.getElementById("componentName").value = "";
 
         document.getElementById("componentType").value = "SERVICE";
 
-        // Reload canvas
+        await loadComponents(architectureId);
 
-        loadComponents(architectureId);
+        Swal.fire({
+
+            icon: "success",
+
+            title: "Component Created",
+
+            text: "Component has been added successfully.",
+
+            timer: 1800,
+
+            showConfirmButton: false
+
+        });
 
         console.log("Component Created Successfully");
 
@@ -103,7 +160,15 @@ async function createComponent() {
 
         console.error(error);
 
-        alert("Failed to create component.");
+        Swal.fire({
+
+            icon: "error",
+
+            title: "Creation Failed",
+
+            text: "Unable to create component."
+
+        });
 
     }
 
