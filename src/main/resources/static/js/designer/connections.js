@@ -2,10 +2,11 @@
 // Connections Module
 // ==========================================
 
-async function loadConnections(architectureId) {
+// ==========================================
+// Load Connections
+// ==========================================
 
-    // Prevent connection-builder from firing
-    loadingConnections = true;
+async function loadConnections(architectureId) {
 
     try {
 
@@ -23,9 +24,6 @@ async function loadConnections(architectureId) {
 
         console.log("Connections:", connections);
 
-        // ONLY return the connections.
-        // Do NOT draw them here.
-
         return connections;
 
     }
@@ -35,12 +33,6 @@ async function loadConnections(architectureId) {
         console.error(error);
 
         return [];
-
-    }
-
-    finally {
-
-        loadingConnections = false;
 
     }
 
@@ -58,7 +50,9 @@ function drawConnection(connection) {
     const targetId =
         "component-" + connection.targetComponent.id;
 
+    // --------------------------------------
     // Ensure both nodes exist
+    // --------------------------------------
 
     if (
         !document.getElementById(sourceId) ||
@@ -75,6 +69,10 @@ function drawConnection(connection) {
         return;
 
     }
+
+    // --------------------------------------
+    // Draw Connection
+    // --------------------------------------
 
     const jsConnection = jsPlumb.connect({
 
@@ -106,15 +104,115 @@ function drawConnection(connection) {
 
         },
 
+        hoverPaintStyle: {
+
+            stroke: "#ef4444",
+
+            strokeWidth: 4
+
+        },
+
         endpoint: "Blank"
 
     });
 
-    // Mark as loaded from database
+    // --------------------------------------
+    // Store Connection Data
+    // --------------------------------------
+
     jsConnection.data = {
 
-        loaded: true
+        id: connection.id,
+
+        sourceName: connection.sourceComponent.name,
+
+        targetName: connection.targetComponent.name
 
     };
+
+    // --------------------------------------
+    // Delete Connection
+    // --------------------------------------
+
+    jsConnection.bind("click", async function () {
+
+        const result = await Swal.fire({
+
+            icon: "warning",
+
+            title: "Delete Connection?",
+
+            html: `
+                <b>${jsConnection.data.sourceName}</b>
+                <br>
+                <i class="fa-solid fa-arrow-down"></i>
+                <br>
+                <b>${jsConnection.data.targetName}</b>
+                <br><br>
+                This connection will be deleted.
+            `,
+
+            showCancelButton: true,
+
+            confirmButtonColor: "#dc3545",
+
+            confirmButtonText: "Delete",
+
+            cancelButtonText: "Cancel"
+
+        });
+
+        if (!result.isConfirmed) {
+
+            return;
+
+        }
+
+        try {
+
+            const response =
+                await fetch(`/connections/${jsConnection.data.id}`, {
+
+                    method: "DELETE"
+
+                });
+
+            if (!response.ok) {
+
+                throw new Error();
+
+            }
+
+            jsPlumb.deleteConnection(jsConnection);
+
+            Swal.fire({
+
+                icon: "success",
+
+                title: "Connection Deleted",
+
+                timer: 1500,
+
+                showConfirmButton: false
+
+            });
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            Swal.fire({
+
+                icon: "error",
+
+                title: "Unable to delete connection."
+
+            });
+
+        }
+
+    });
 
 }

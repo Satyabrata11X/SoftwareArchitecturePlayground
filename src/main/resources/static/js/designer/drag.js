@@ -8,12 +8,14 @@ function enableDragging(node) {
     jsPlumb.draggable(node, {
 
         containment: "parent",
+        
+ drag: function () {
 
-        drag: function () {
+    jsPlumb.repaintEverything();
 
-            jsPlumb.repaintEverything();
+    updateAllConnectionWidgets();
 
-        }
+}
 
     });
 
