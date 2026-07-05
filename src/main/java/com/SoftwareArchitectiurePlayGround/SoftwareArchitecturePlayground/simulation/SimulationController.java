@@ -19,9 +19,23 @@ public class SimulationController {
 
     @GetMapping("/traffic")
     public List<SimulationResult> simulateTraffic(
-            @RequestParam Long architectureId,
-            @RequestParam int users) {
 
-        return simulationService.simulateTraffic(architectureId, users);
+            @RequestParam Long architectureId,
+
+            @RequestParam int users,
+
+            @RequestParam(defaultValue = "NORMAL")
+            SimulationScenario scenario) {
+
+        return simulationService.simulateTraffic(
+
+                architectureId,
+
+                users,
+
+                scenario
+
+        );
+
     }
 }

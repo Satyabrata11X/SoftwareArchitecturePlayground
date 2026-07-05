@@ -114,11 +114,19 @@
 
     position:absolute;
 
-    width:190px;
+    width:210px;
 
-    height:70px;
+    min-height:90px;
+
+    background:#1f2937;
+
+    border:2px solid #374151;
+
+    border-radius:14px;
 
     display:flex;
+
+    flex-direction:column;
 
     justify-content:center;
 
@@ -126,25 +134,52 @@
 
     gap:10px;
 
-    background:linear-gradient(135deg,#2563eb,#1d4ed8);
-
     color:white;
-
-    border-radius:14px;
-
-    font-size:18px;
-
-    font-weight:600;
 
     cursor:move;
 
     user-select:none;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.35);
+    box-shadow:0 12px 28px rgba(0,0,0,.35);
 
-    border:2px solid rgba(255,255,255,.08);
+    transition:
+        left .5s ease,
+        top .5s ease,
+        transform .25s,
+        box-shadow .25s;
 
-    transition:.25s;
+}
+
+
+.node-badge{
+
+    width:100%;
+
+    padding:8px;
+
+    text-align:center;
+
+    font-size:12px;
+
+    font-weight:700;
+
+    letter-spacing:1px;
+
+    text-transform:uppercase;
+
+    border-radius:12px 12px 0 0;
+
+    background:#2563eb;
+
+}
+
+.node-name{
+
+    font-size:18px;
+
+    font-weight:600;
+
+    padding-bottom:12px;
 
 }
 
@@ -230,6 +265,163 @@
 
 }
 
+
+/* ==========================================
+   Simulation Badge
+========================================== */
+
+.simulation-badge{
+
+    position:absolute;
+
+    top:-18px;
+
+    right:-15px;
+
+    padding:5px 10px;
+
+    border-radius:20px;
+
+    font-size:11px;
+
+    font-weight:700;
+
+    color:white;
+
+    z-index:999;
+
+    animation:pulse 1.5s infinite;
+
+}
+
+.simulation-low{
+
+    background:#16a34a;
+
+}
+
+.simulation-medium{
+
+    background:#f59e0b;
+
+}
+
+.simulation-high{
+
+    background:#ea580c;
+
+}
+
+.simulation-critical{
+
+    background:#dc2626;
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        transform:scale(1);
+
+    }
+
+    50%{
+
+        transform:scale(1.08);
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+    }
+
+}
+
+
+/* ==========================================
+   Simulation Overlay
+========================================== */
+
+.simulation-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:rgba(10,15,30,.82);
+
+    backdrop-filter:blur(4px);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:9999;
+
+    animation:fadeIn .3s ease;
+
+}
+
+.overlay-card{
+
+    width:420px;
+
+    background:#1e293b;
+
+    border:1px solid #3b82f6;
+
+    border-radius:18px;
+
+    padding:35px;
+
+    text-align:center;
+
+    color:white;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.45);
+
+}
+
+.overlay-card h2{
+
+    font-size:26px;
+
+    margin-bottom:25px;
+
+    color:#3b82f6;
+
+}
+
+.overlay-card p{
+
+    font-size:16px;
+
+    margin:12px 0;
+
+    color:#cbd5e1;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+    }
+
+    to{
+
+        opacity:1;
+
+    }
+
+}
 
 
 /* ==========================================

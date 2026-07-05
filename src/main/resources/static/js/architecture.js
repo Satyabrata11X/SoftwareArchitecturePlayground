@@ -24,7 +24,9 @@ async function loadArchitectures() {
         const response = await fetch("/architectures");
 
         if (!response.ok) {
+
             throw new Error("Failed to fetch architectures.");
+
         }
 
         const architectures = await response.json();
@@ -50,7 +52,7 @@ async function loadArchitectures() {
 
                         <button
                             class="btn btn-danger btn-sm"
-                            onclick="deleteArchitecture(${architecture.id})">
+                            onclick="deleteArchitecture(${architecture.id}, '${architecture.name}')">
 
                             <i class="fa-solid fa-trash"></i>
 
@@ -70,7 +72,15 @@ async function loadArchitectures() {
 
         console.error(error);
 
-        alert("Unable to load architectures.");
+        Swal.fire({
+
+            icon: "error",
+
+            title: "Loading Failed",
+
+            text: "Unable to load architectures."
+
+        });
 
     }
 
@@ -86,15 +96,27 @@ async function createArchitecture(event) {
 
     const architecture = {
 
-        name: document.getElementById("architectureName").value.trim(),
+        name:
+            document.getElementById("architectureName")
+                .value.trim(),
 
-        description: document.getElementById("architectureDescription").value.trim()
+        description:
+            document.getElementById("architectureDescription")
+                .value.trim()
 
     };
 
     if (architecture.name === "") {
 
-        alert("Architecture name is required.");
+        Swal.fire({
+
+            icon: "warning",
+
+            title: "Architecture Name Required",
+
+            text: "Please enter an architecture name."
+
+        });
 
         return;
 
@@ -107,7 +129,9 @@ async function createArchitecture(event) {
             method: "POST",
 
             headers: {
+
                 "Content-Type": "application/json"
+
             },
 
             body: JSON.stringify(architecture)
@@ -116,15 +140,29 @@ async function createArchitecture(event) {
 
         if (!response.ok) {
 
-            throw new Error("Failed to create architecture.");
+            throw new Error();
 
         }
 
-        document.getElementById("architectureForm").reset();
+        document
+            .getElementById("architectureForm")
+            .reset();
 
-        loadArchitectures();
+        await loadArchitectures();
 
-        alert("Architecture created successfully.");
+        Swal.fire({
+
+            icon: "success",
+
+            title: "Architecture Created",
+
+            text: "Architecture has been created successfully.",
+
+            timer: 1800,
+
+            showConfirmButton: false
+
+        });
 
     }
 
@@ -132,7 +170,15 @@ async function createArchitecture(event) {
 
         console.error(error);
 
-        alert("Something went wrong while creating the architecture.");
+        Swal.fire({
+
+            icon: "error",
+
+            title: "Creation Failed",
+
+            text: "Unable to create architecture."
+
+        });
 
     }
 
@@ -142,14 +188,56 @@ async function createArchitecture(event) {
 // Delete Architecture
 // =============================================
 
-async function deleteArchitecture(id) {
+async function deleteArchitecture(id, name) {
 
-    const confirmed = confirm(
-        "Are you sure you want to delete this architecture?"
-    );
+    const result = await Swal.fire({
 
-    if (!confirmed) {
+        icon: "warning",
+
+        title: "Delete Architecture?",
+
+        html: `
+
+            <b>${name}</b>
+
+            <br><br>
+
+            This will permanently delete:
+
+            <br>
+
+            • Architecture
+
+            <br>
+
+            • Components
+
+            <br>
+
+            • Connections
+
+            <br>
+
+            • Saved Layout
+
+        `,
+
+        showCancelButton: true,
+
+        confirmButtonColor: "#dc3545",
+
+        cancelButtonColor: "#6c757d",
+
+        confirmButtonText: "Delete",
+
+        cancelButtonText: "Cancel"
+
+    });
+
+    if (!result.isConfirmed) {
+
         return;
+
     }
 
     try {
@@ -162,13 +250,23 @@ async function deleteArchitecture(id) {
 
         if (!response.ok) {
 
-            throw new Error("Delete failed.");
+            throw new Error();
 
         }
 
-        loadArchitectures();
+        await loadArchitectures();
 
-        alert("Architecture deleted successfully.");
+        Swal.fire({
+
+            icon: "success",
+
+            title: "Architecture Deleted",
+
+            timer: 1500,
+
+            showConfirmButton: false
+
+        });
 
     }
 
@@ -176,7 +274,15 @@ async function deleteArchitecture(id) {
 
         console.error(error);
 
-        alert("Unable to delete architecture.");
+        Swal.fire({
+
+            icon: "error",
+
+            title: "Deletion Failed",
+
+            text: "Unable to delete architecture."
+
+        });
 
     }
 

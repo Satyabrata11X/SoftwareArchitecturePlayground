@@ -20,7 +20,8 @@ public class BottleneckService {
         List<SimulationResult> results =
                 simulationService.simulateTraffic(
                         architectureId,
-                        users
+                        users,
+                        SimulationScenario.NORMAL
                 );
 
         SimulationResult bottleneck = null;
@@ -28,27 +29,26 @@ public class BottleneckService {
         for (SimulationResult result : results) {
 
             if (bottleneck == null ||
-                    result.getLoadPercentage() >
-                            bottleneck.getLoadPercentage()) {
+                    result.getLoadPercentage() > bottleneck.getLoadPercentage()) {
 
                 bottleneck = result;
+
             }
+
         }
 
         if (bottleneck == null) {
+
             return null;
+
         }
 
         return BottleneckResult.builder()
-                .componentName(
-                        bottleneck.getComponentName()
-                )
-                .loadPercentage(
-                        bottleneck.getLoadPercentage()
-                )
-                .status(
-                        bottleneck.getStatus()
-                )
+                .componentName(bottleneck.getComponentName())
+                .loadPercentage(bottleneck.getLoadPercentage())
+                .status(bottleneck.getStatus())
                 .build();
+
     }
+
 }

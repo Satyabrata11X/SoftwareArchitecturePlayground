@@ -183,77 +183,62 @@
 
     </div>
 
-    <!-- ===========================
-            Toolbar
-    =========================== -->
+<!-- ----------Tool Bar ------------------ -->
 
-    <div class="toolbar">
+  <div class="toolbar">
 
-        <button
-                id="addComponentBtn"
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#addComponentModal">
+    <button
+        id="addComponentBtn"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#addComponentModal">
 
-            <i class="fa-solid fa-plus"></i>
+        <i class="fa-solid fa-plus"></i>
+        Add Component
 
-            Add Component
+    </button>
 
-        </button>
+   <button
+    id="addConnectionBtn"
+    class="btn btn-info"
+    data-bs-toggle="modal"
+    data-bs-target="#addConnectionModal">
 
-        <button
-                id="addConnectionBtn"
-                class="btn btn-info"
-                data-bs-toggle="modal"
-                data-bs-target="#addConnectionModal">
+    <i class="fa-solid fa-link"></i>
 
-            <i class="fa-solid fa-link"></i>
+    Add Connection
 
-            Add Connection
+</button>
 
-        </button>
+    <button id="autoLayoutBtn" class="btn btn-warning">
 
-        <button
-                id="autoLayoutBtn"
-                class="btn btn-warning">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+        Auto Layout
 
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
+    </button>
 
-            Auto Layout
+    <button id="simulationBtn" class="btn btn-danger">
 
-        </button>
+        <i class="fa-solid fa-play"></i>
+        Run Simulation
 
-        <button
-                id="saveLayoutBtn"
-                class="btn btn-success">
+    </button>
 
-            <i class="fa-solid fa-floppy-disk"></i>
+    <button id="exportPngBtn" class="btn btn-success">
 
-            Save Layout
+        <i class="fa-solid fa-image"></i>
+        Export PNG
 
-        </button>
+    </button>
 
-        <button
-                id="loadLayoutBtn"
-                class="btn btn-secondary">
+    <button id="exportPdfBtn" class="btn btn-secondary">
 
-            <i class="fa-solid fa-folder-open"></i>
+        <i class="fa-solid fa-file-pdf"></i>
+        Export PDF
 
-            Load Layout
+    </button>
 
-        </button>
-
-        <button
-                id="simulationBtn"
-                class="btn btn-danger">
-
-            <i class="fa-solid fa-play"></i>
-
-            Run Simulation
-
-        </button>
-
-    </div>
+</div>
 
         <!-- ==========================================
             Designer Canvas
@@ -483,6 +468,189 @@
 
 </div>
 
+
+<!-- ==========================================
+        Simulation Configuration Modal
+========================================== -->
+
+<div class="modal fade"
+     id="simulationModal"
+     tabindex="-1"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-lg">
+
+        <div class="modal-content bg-dark text-white">
+
+            <div class="modal-header">
+
+                <h4>
+
+                    🚀 Configure Simulation
+
+                </h4>
+
+                <button
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal">
+
+                </button>
+
+            </div>
+
+            <div class="modal-body">
+
+                <!-- Simulation Name -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        Simulation Name
+
+                    </label>
+
+                    <input
+                            id="simulationName"
+                            class="form-control"
+                            placeholder="Performance Test">
+
+                </div>
+
+                <!-- Users -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        Number of Users
+
+                    </label>
+
+                    <input
+                            id="simulationUsers"
+                            type="number"
+                            class="form-control"
+                            value="1000">
+
+                </div>
+
+                <!-- Scenario -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        Simulation Scenario
+
+                    </label>
+
+                    <select
+                            id="simulationScenario"
+                            class="form-select">
+
+                        <option value="NORMAL">
+
+                            Normal Load
+
+                        </option>
+
+                        <option value="HEAVY">
+
+                            Heavy Traffic
+
+                        </option>
+
+                        <option value="SPIKE">
+
+                            Traffic Spike
+
+                        </option>
+
+                        <option value="DATABASE_FAILURE">
+
+                            Database Failure
+
+                        </option>
+
+                        <option value="SERVICE_FAILURE">
+
+                            Service Failure
+
+                        </option>
+
+                        <option value="NETWORK_LATENCY">
+
+                            Network Latency
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Duration -->
+
+                <div>
+
+                    <label class="form-label">
+
+                        Duration
+
+                    </label>
+
+                    <select
+                            id="simulationDuration"
+                            class="form-select">
+
+                        <option>10 Seconds</option>
+
+                        <option selected>
+
+                            30 Seconds
+
+                        </option>
+
+                        <option>
+
+                            60 Seconds
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button
+                        id="executeSimulationBtn"
+                        class="btn btn-danger">
+
+                    <i class="fa-solid fa-play"></i>
+
+                    Execute Simulation
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
 <!-- ==========================================
      Bootstrap JS
 ========================================== -->
@@ -501,6 +669,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jsPlumb/2.15.6/js/jsplumb.min.js"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/html-to-image@1.11.11/dist/html-to-image.min.js"></script>
 <!-- ==========================================
      Designer Modules
 ========================================== -->
@@ -520,9 +689,7 @@
 
 <script th:src="@{/js/designer/add-connection.js}"></script>
 
-<script th:src="@{/js/designer/save-layout.js}"></script>
-
-<script th:src="@{/js/designer/load-layout.js}"></script>
+<script th:src="@{/js/designer/export-png.js}"></script>
 
 <script th:src="@{/js/designer/simulation.js}"></script>
 
