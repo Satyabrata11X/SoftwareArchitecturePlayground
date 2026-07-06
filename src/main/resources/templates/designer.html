@@ -470,7 +470,7 @@
 
 
 <!-- ==========================================
-        Simulation Configuration Modal
+        Professional Simulation Modal
 ========================================== -->
 
 <div class="modal fade"
@@ -478,22 +478,21 @@
      tabindex="-1"
      aria-hidden="true">
 
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
 
-        <div class="modal-content bg-dark text-white">
+        <div class="modal-content bg-dark border border-success text-white">
 
             <div class="modal-header">
 
-                <h4>
+                <h3 class="modal-title">
 
-                    🚀 Configure Simulation
+                    🚀 Run Architecture Simulation
 
-                </h4>
+                </h3>
 
                 <button
                         class="btn-close btn-close-white"
                         data-bs-dismiss="modal">
-
                 </button>
 
             </div>
@@ -506,32 +505,42 @@
 
                     <label class="form-label">
 
-                        Simulation Name
+                        📝 Simulation Name
 
                     </label>
 
                     <input
                             id="simulationName"
                             class="form-control"
-                            placeholder="Performance Test">
+                            value="Performance Test">
 
                 </div>
 
-                <!-- Users -->
+                <!-- Concurrent Users -->
 
                 <div class="mb-4">
 
                     <label class="form-label">
 
-                        Number of Users
+                        👥 Concurrent Users
 
                     </label>
 
-                    <input
+                    <select
                             id="simulationUsers"
-                            type="number"
-                            class="form-control"
-                            value="1000">
+                            class="form-select">
+
+                        <option value="100">100 Users</option>
+
+                        <option value="500">500 Users</option>
+
+                        <option value="1000" selected>1000 Users</option>
+
+                        <option value="5000">5000 Users</option>
+
+                        <option value="10000">10000 Users</option>
+
+                    </select>
 
                 </div>
 
@@ -541,7 +550,7 @@
 
                     <label class="form-label">
 
-                        Simulation Scenario
+                        ⚡ Simulation Scenario
 
                     </label>
 
@@ -551,7 +560,7 @@
 
                         <option value="NORMAL">
 
-                            Normal Load
+                            Normal Traffic
 
                         </option>
 
@@ -589,13 +598,91 @@
 
                 </div>
 
+                <!-- Request Type -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        📦 Request Type
+
+                    </label>
+
+                    <select
+                            id="requestType"
+                            class="form-select">
+
+                        <option value="ORDER">
+
+                            Order API
+
+                        </option>
+
+                        <option value="PAYMENT">
+
+                            Payment API
+
+                        </option>
+
+                        <option value="SEARCH">
+
+                            Search API
+
+                        </option>
+
+                        <option value="LOGIN">
+
+                            Login API
+
+                        </option>
+
+                    </select>
+
+                </div>
+
+                <!-- Speed -->
+
+                <div class="mb-4">
+
+                    <label class="form-label">
+
+                        🎬 Simulation Speed
+
+                    </label>
+
+                    <select
+                            id="simulationSpeed"
+                            class="form-select">
+
+                        <option value="FAST">
+
+                            Fast
+
+                        </option>
+
+                        <option value="NORMAL" selected>
+
+                            Normal
+
+                        </option>
+
+                        <option value="SLOW">
+
+                            Slow
+
+                        </option>
+
+                    </select>
+
+                </div>
+
                 <!-- Duration -->
 
                 <div>
 
                     <label class="form-label">
 
-                        Duration
+                        ⏱ Duration
 
                     </label>
 
@@ -605,17 +692,9 @@
 
                         <option>10 Seconds</option>
 
-                        <option selected>
+                        <option selected>30 Seconds</option>
 
-                            30 Seconds
-
-                        </option>
-
-                        <option>
-
-                            60 Seconds
-
-                        </option>
+                        <option>60 Seconds</option>
 
                     </select>
 
@@ -635,11 +714,11 @@
 
                 <button
                         id="executeSimulationBtn"
-                        class="btn btn-danger">
+                        class="btn btn-success">
 
                     <i class="fa-solid fa-play"></i>
 
-                    Execute Simulation
+                    Run Simulation
 
                 </button>
 
@@ -684,14 +763,19 @@
 
 <script th:src="@{/js/designer/connections.js}"></script>
 
-
 <script th:src="@{/js/designer/add-component.js}"></script>
 
 <script th:src="@{/js/designer/add-connection.js}"></script>
 
 <script th:src="@{/js/designer/export-png.js}"></script>
 
+<script src="/js/animation/packet-engine.js"></script>
+
+<script src="/js/animation/traffic-animation.js"></script>
+
 <script th:src="@{/js/designer/simulation.js}"></script>
+
+
 
 <!-- ==========================================
      Main Controller

@@ -223,3 +223,51 @@ function getLeafNodes(graph) {
     return Object.values(graph).filter(node => node.children.length === 0);
 
 }
+
+// ==========================================
+// Build Request Route
+// ==========================================
+
+function buildRequestRoute(graph) {
+
+    const root = findRootNode(graph);
+
+    if (!root) {
+
+        return [];
+
+    }
+
+    const route = [];
+
+    traverse(root);
+
+    console.log("Request Route");
+
+    console.table(route);
+
+    return route;
+
+    function traverse(node) {
+
+        route.push(node.component.id);
+
+        if (node.children.length === 0) {
+
+            return;
+
+        }
+
+        traverse(
+
+            graph[
+
+                node.children[0]
+
+            ]
+
+        );
+
+    }
+
+}

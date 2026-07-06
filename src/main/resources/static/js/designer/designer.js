@@ -460,3 +460,43 @@ function clearCanvas() {
     canvas.innerHTML = "";
 
 }
+
+
+// ==========================================
+// Build Traffic Path
+// ==========================================
+
+function buildTrafficPath() {
+
+    const path = [];
+
+    currentConnections.forEach(connection => {
+
+        if (!connection.sourceComponent ||
+            !connection.targetComponent) {
+
+            return;
+
+        }
+
+        path.push({
+
+            fromId: connection.sourceComponent.id,
+
+            toId: connection.targetComponent.id,
+
+            fromName: connection.sourceComponent.name,
+
+            toName: connection.targetComponent.name
+
+        });
+
+    });
+
+    console.log("Traffic Path");
+
+    console.table(path);
+
+    return path;
+
+}

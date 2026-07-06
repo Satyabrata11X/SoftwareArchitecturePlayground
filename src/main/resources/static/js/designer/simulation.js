@@ -95,23 +95,65 @@ function executeSimulationFromModal() {
 // Start Simulation
 // ==========================================
 
-function startSimulation() {
+async function startSimulation() {
 
     simulationRunning = true;
 
+    // Lock Designer
     lockDesigner(true);
 
+    // Update Button
     updateSimulationButton(true);
 
+    // Show Overlay
     showSimulationOverlay();
 
-    setTimeout(async () => {
+    // --------------------------------------
+    // Step 1 - Read Architecture
+    // --------------------------------------
 
-        hideSimulationOverlay();
+    updateSimulationStep(1);
 
-        await executeSimulation();
+    await sleep(500);
 
-    }, 2000);
+    // --------------------------------------
+    // Step 2 - Build Graph
+    // --------------------------------------
+
+    updateSimulationStep(2);
+
+    await sleep(500);
+
+    // --------------------------------------
+    // Step 3 - Generate Request Plan
+    // --------------------------------------
+
+    updateSimulationStep(3);
+
+    await sleep(500);
+
+    // --------------------------------------
+    // Step 4 - Backend Simulation
+    // --------------------------------------
+
+    await executeSimulation();
+
+    updateSimulationStep(4);
+
+    await sleep(500);
+
+    // --------------------------------------
+    // Step 5 - Start Traffic Animation
+    // --------------------------------------
+
+    startTrafficAnimation(currentGraph);
+
+    updateSimulationStep(5);
+
+    await sleep(800);
+
+    // Hide Overlay
+    hideSimulationOverlay();
 
 }
 
@@ -346,7 +388,7 @@ function removeSimulationBadges() {
 }
 
 // ==========================================
-// Show Overlay
+// Show Professional Simulation Overlay
 // ==========================================
 
 function showSimulationOverlay() {
@@ -357,45 +399,176 @@ function showSimulationOverlay() {
     const overlay =
         document.createElement("div");
 
-    overlay.className =
-        "simulation-overlay";
+    overlay.className = "simulation-overlay";
 
-    overlay.id =
-        "simulationOverlay";
+    overlay.id = "simulationOverlay";
 
     overlay.innerHTML = `
 
         <div class="overlay-card">
 
-            <h2>
+            <div class="overlay-title">
 
-                🚀 EXECUTING SIMULATION
+                🚀 Initializing Simulation
 
-            </h2>
+            </div>
 
-            <p>
+            <div class="progress">
 
-                Reading Architecture...
+                <div
+                    id="simulationProgressBar"
+                    class="progress-bar">
+                </div>
 
-            </p>
+            </div>
 
-            <p>
+            <div
+                id="step1"
+                class="progress-step">
 
-                Building Component Graph...
+                <span>
 
-            </p>
+                    📐 Reading Architecture
 
-            <p>
+                </span>
 
-                Starting Traffic...
+                <span>
 
-            </p>
+                    ⏳
+
+                </span>
+
+            </div>
+
+            <div
+                id="step2"
+                class="progress-step">
+
+                <span>
+
+                    🕸 Building Graph
+
+                </span>
+
+                <span>
+
+                    ⏳
+
+                </span>
+
+            </div>
+
+            <div
+                id="step3"
+                class="progress-step">
+
+                <span>
+
+                    📦 Generating Request Plan
+
+                </span>
+
+                <span>
+
+                    ⏳
+
+                </span>
+
+            </div>
+
+            <div
+                id="step4"
+                class="progress-step">
+
+                <span>
+
+                    🚦 Starting Traffic Engine
+
+                </span>
+
+                <span>
+
+                    ⏳
+
+                </span>
+
+            </div>
+
+            <div
+                id="step5"
+                class="progress-step">
+
+                <span>
+
+                    ✅ Launching Live Simulation
+
+                </span>
+
+                <span>
+
+                    ⏳
+
+                </span>
+
+            </div>
 
         </div>
 
     `;
 
     canvas.appendChild(overlay);
+
+    animateSimulationOverlay();
+
+}
+
+// ==========================================
+// Animate Simulation Overlay
+// ==========================================
+
+function animateSimulationOverlay() {
+
+    const steps = [
+
+        "step1",
+
+        "step2",
+
+        "step3",
+
+        "step4",
+
+        "step5"
+
+    ];
+
+    const progress =
+        document.getElementById(
+            "simulationProgressBar"
+        );
+
+    let percentage = 0;
+
+    steps.forEach((stepId, index) => {
+
+        setTimeout(() => {
+
+            percentage += 20;
+
+            progress.style.width =
+                percentage + "%";
+
+            const step =
+                document.getElementById(stepId);
+
+            step.classList.add("done");
+
+            step.lastElementChild.innerHTML =
+                "✅";
+
+        }, (index + 1) * 500);
+
+    });
 
 }
 
@@ -475,5 +648,50 @@ function startScenarioEngine() {
 function stopScenarioEngine() {
 
     console.log("Scenario Engine Stopped");
+
+}
+
+// ==========================================
+// Update Simulation Step
+// ==========================================
+
+function updateSimulationStep(stepNumber) {
+
+    const progress =
+        document.getElementById(
+            "simulationProgressBar"
+        );
+
+    if (!progress) return;
+
+    const percentage =
+        stepNumber * 20;
+
+    progress.style.width =
+        percentage + "%";
+
+    const step =
+        document.getElementById(
+            "step" + stepNumber
+        );
+
+    if (!step) return;
+
+    step.classList.remove("active");
+
+    step.classList.add("done");
+
+    step.lastElementChild.innerHTML =
+        "✅";
+
+}
+
+// ==========================================
+// Sleep Helper
+// ==========================================
+
+function sleep(ms) {
+
+    return new Promise(resolve => setTimeout(resolve, ms));
 
 }
