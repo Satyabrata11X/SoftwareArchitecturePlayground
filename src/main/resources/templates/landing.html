@@ -1,0 +1,2234 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Architecture Studio | Design • Simulate • Optimize</title>
+
+    <meta name="description"
+          content="Architecture Studio - Interactive System Design Simulator">
+
+    <meta name="author"
+          content="Satyabrata Behera">
+
+    <!-- Google Font -->
+
+    <link rel="preconnect"
+          href="https://fonts.googleapis.com">
+
+    <link rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+          th:href="@{/css/landing.css}">
+
+</head>
+
+<body>
+
+<!-- ========================================= -->
+<!-- Animated Background -->
+<!-- ========================================= -->
+
+<div class="background">
+
+    <div class="gradient gradient1"></div>
+
+    <div class="gradient gradient2"></div>
+
+    <div class="gradient gradient3"></div>
+
+    <div class="grid-overlay"></div>
+
+    <div class="noise"></div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- Floating Particles -->
+<!-- ========================================= -->
+
+<div class="particles">
+
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+
+</div>
+
+<!-- ========================================= -->
+<!-- Page Wrapper -->
+<!-- ========================================= -->
+
+<div class="page-wrapper">
+
+<div class="cursor-glow"></div>
+
+<!-- ========================================= -->
+<!-- Navbar -->
+<!-- ========================================= -->
+
+<header class="navbar">
+
+    <div class="container">
+
+        <!-- Logo -->
+
+        <a href="/" class="logo">
+
+            <div class="logo-icon">
+
+                <svg width="48"
+                     height="48"
+                     viewBox="0 0 64 64"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    <!-- Connections -->
+
+                    <line x1="18" y1="18" x2="46" y2="18"/>
+                    <line x1="18" y1="18" x2="18" y2="46"/>
+                    <line x1="46" y1="18" x2="46" y2="46"/>
+                    <line x1="18" y1="46" x2="46" y2="46"/>
+                    <line x1="18" y1="18" x2="32" y2="32"/>
+                    <line x1="46" y1="18" x2="32" y2="32"/>
+                    <line x1="18" y1="46" x2="32" y2="32"/>
+                    <line x1="46" y1="46" x2="32" y2="32"/>
+
+                    <!-- Nodes -->
+
+                    <circle cx="18" cy="18" r="4"/>
+                    <circle cx="46" cy="18" r="4"/>
+                    <circle cx="18" cy="46" r="4"/>
+                    <circle cx="46" cy="46" r="4"/>
+                    <circle cx="32" cy="32" r="5"/>
+
+                </svg>
+
+            </div>
+
+            <div class="logo-text">
+
+                <span class="title">
+                    Architecture
+                </span>
+
+                <span class="subtitle">
+                    Studio
+                </span>
+
+            </div>
+
+        </a>
+
+        <!-- Navigation -->
+
+        <nav class="nav-links">
+
+            <a href="#home">Home</a>
+
+            <a href="#features">Features</a>
+
+            <a href="#workflow">Workflow</a>
+
+            <a href="#simulation">Simulation</a>
+
+            <a href="#developer">Developer</a>
+
+        </nav>
+
+        <!-- Right Side -->
+
+        <div class="nav-right">
+
+            <a th:href="@{/login}"
+               class="btn btn-outline">
+
+                <i class="bi bi-box-arrow-in-right"></i>
+
+                Login
+
+            </a>
+
+            <a th:href="@{/register}"
+               class="btn btn-primary">
+
+                <i class="bi bi-stars"></i>
+
+                Get Started
+
+            </a>
+
+            <!-- Mobile Toggle -->
+
+            <button class="menu-toggle">
+
+                <i class="bi bi-list"></i>
+
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- ========================================= -->
+<!-- Hero Section Starts -->
+<!-- ========================================= -->
+
+<section id="home" class="hero">
+
+    <div class="container hero-container">
+
+        <!-- ========================================= -->
+<!-- Hero Left -->
+<!-- ========================================= -->
+
+<div class="hero-left">
+
+    <!-- Badge -->
+
+    <div class="hero-badge">
+
+        <i class="bi bi-cpu-fill"></i>
+
+        <span>Interactive Distributed System Designer</span>
+
+    </div>
+
+    <!-- Heading -->
+
+    <h1 class="hero-title">
+
+        Build
+
+        <span class="gradient-text">
+            Modern Software
+        </span>
+
+        <br>
+
+        Architecture
+
+        <span class="outline-text">
+            Visually
+        </span>
+
+    </h1>
+
+    <!-- Description -->
+
+    <p class="hero-description">
+
+        Architecture Studio is an interactive platform for designing,
+        simulating and optimizing distributed software systems.
+
+        Drag components, connect services, simulate failures,
+        analyze bottlenecks and generate professional reports
+        in real time.
+
+    </p>
+
+    <!-- CTA Buttons -->
+
+    <div class="hero-buttons">
+
+        <a th:href="@{/dashboard}" class="btn btn-primary btn-lg">
+
+            <i class="bi bi-play-circle-fill"></i>
+
+            Start Designing
+
+        </a>
+
+        <a href="#features" class="btn btn-secondary btn-lg">
+
+            <i class="bi bi-arrow-down-circle"></i>
+
+            Explore Features
+
+        </a>
+
+    </div>
+
+    <!-- Quick Statistics -->
+
+    <div class="hero-stats">
+
+        <div class="stat-card">
+
+            <h2>25+</h2>
+
+            <span>Architecture Components</span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>15+</h2>
+
+            <span>Simulation Scenarios</span>
+
+        </div>
+
+        <div class="stat-card">
+
+            <h2>100%</h2>
+
+            <span>Interactive Learning</span>
+
+        </div>
+
+    </div>
+
+    <!-- Supported Technologies -->
+
+    <div class="tech-preview">
+
+        <span class="tech-chip">
+            <i class="bi bi-cup-hot-fill"></i>
+            Spring Boot
+        </span>
+
+        <span class="tech-chip">
+            <i class="bi bi-database-fill"></i>
+            PostgreSQL
+        </span>
+
+        <span class="tech-chip">
+            <i class="bi bi-boxes"></i>
+            Docker
+        </span>
+
+        <span class="tech-chip">
+            <i class="bi bi-hdd-network-fill"></i>
+            Microservices
+        </span>
+
+        <span class="tech-chip">
+            <i class="bi bi-lightning-fill"></i>
+            Kafka
+        </span>
+
+        <span class="tech-chip">
+            <i class="bi bi-diagram-3-fill"></i>
+            System Design
+        </span>
+
+    </div>
+
+    <!-- Scroll Indicator -->
+
+    <div class="scroll-indicator">
+
+        <span>Scroll to Explore</span>
+
+        <i class="bi bi-chevron-double-down"></i>
+
+    </div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- Hero Right Starts -->
+<!-- ========================================= -->
+
+<div class="hero-right">
+    <!-- ========================================= -->
+<!-- Live Architecture Card -->
+<!-- ========================================= -->
+
+<div class="architecture-card">
+
+    <!-- Card Header -->
+
+    <div class="architecture-header">
+
+        <div>
+
+            <h3>Live Architecture</h3>
+            <p>Distributed System Topology</p>
+
+        </div>
+
+        <div class="status-live">
+
+            <span class="live-dot"></span>
+
+            Running
+
+        </div>
+
+    </div>
+
+    <!-- Architecture Diagram -->
+
+    <div class="architecture-diagram">
+
+        <!-- Client -->
+
+        <div class="node client">
+
+            <div class="node-icon">
+                <i class="bi bi-laptop"></i>
+            </div>
+
+            <span>Client</span>
+
+        </div>
+
+        <div class="connector vertical"></div>
+
+        <!-- Load Balancer -->
+
+        <div class="node load-balancer">
+
+            <div class="node-icon">
+                <i class="bi bi-distribute-horizontal"></i>
+            </div>
+
+            <span>Load Balancer</span>
+
+        </div>
+
+        <div class="connector vertical"></div>
+
+        <!-- API Gateway -->
+
+        <div class="node gateway">
+
+            <div class="node-icon">
+                <i class="bi bi-diagram-3-fill"></i>
+            </div>
+
+            <span>API Gateway</span>
+
+        </div>
+
+        <!-- Services -->
+
+        <div class="services-row">
+
+            <div class="service-column">
+
+                <div class="connector branch-left"></div>
+
+                <div class="node service">
+
+                    <div class="node-icon">
+
+                        <i class="bi bi-shield-lock-fill"></i>
+
+                    </div>
+
+                    <span>Auth</span>
+
+                </div>
+
+            </div>
+
+            <div class="service-column">
+
+                <div class="connector branch-center"></div>
+
+                <div class="node service">
+
+                    <div class="node-icon">
+
+                        <i class="bi bi-person-fill"></i>
+
+                    </div>
+
+                    <span>User</span>
+
+                </div>
+
+            </div>
+
+            <div class="service-column">
+
+                <div class="connector branch-right"></div>
+
+                <div class="node service">
+
+                    <div class="node-icon">
+
+                        <i class="bi bi-cart-fill"></i>
+
+                    </div>
+
+                    <span>Order</span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Databases -->
+
+        <div class="database-row">
+
+            <div class="database-card redis">
+
+                <i class="bi bi-lightning-charge-fill"></i>
+
+                <h4>Redis Cache</h4>
+
+                <small>Response Cache</small>
+
+            </div>
+
+            <div class="database-card postgres">
+
+                <i class="bi bi-database-fill"></i>
+
+                <h4>PostgreSQL</h4>
+
+                <small>Primary Database</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="architecture-footer">
+
+        <div class="health">
+
+            <i class="bi bi-check-circle-fill"></i>
+
+            System Healthy
+
+        </div>
+
+        <div class="version">
+
+            v2.0
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- Live Metrics Starts -->
+<!-- ========================================= -->
+
+<div class="metrics-grid">
+
+    <!-- CPU -->
+
+    <div class="metric-card">
+
+        <div class="metric-icon cpu">
+            <i class="bi bi-cpu-fill"></i>
+        </div>
+
+        <div class="metric-content">
+
+            <span class="metric-title">CPU Usage</span>
+
+            <h2 id="cpuValue">24%</h2>
+
+            <div class="progress-bar">
+                <div id="cpuProgress"
+                     class="progress cpu-progress"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Memory -->
+
+    <div class="metric-card">
+
+        <div class="metric-icon memory">
+            <i class="bi bi-memory"></i>
+        </div>
+
+        <div class="metric-content">
+
+            <span class="metric-title">Memory</span>
+
+            <h2 id="memoryValue">3.2 GB</h2>
+
+            <div class="progress-bar">
+                <div id="memoryProgress"
+                     class="progress memory-progress"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Latency -->
+
+    <div class="metric-card">
+
+        <div class="metric-icon latency">
+            <i class="bi bi-speedometer2"></i>
+        </div>
+
+        <div class="metric-content">
+
+            <span class="metric-title">Latency</span>
+
+            <h2 id="latencyValue">18 ms</h2>
+
+            <div class="progress-bar">
+                <div id="latencyProgress"
+                     class="progress latency-progress"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Requests -->
+
+    <div class="metric-card">
+
+        <div class="metric-icon throughput">
+            <i class="bi bi-lightning-charge-fill"></i>
+        </div>
+
+        <div class="metric-content">
+
+            <span class="metric-title">Requests/sec</span>
+
+            <h2 id="requestValue">5.8K</h2>
+
+            <div class="progress-bar">
+                <div id="requestProgress"
+                     class="progress throughput-progress"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Health -->
+
+    <div class="metric-card">
+
+        <div class="metric-icon health">
+            <i class="bi bi-heart-pulse-fill"></i>
+        </div>
+
+        <div class="metric-content">
+
+            <span class="metric-title">Health Score</span>
+
+            <h2 id="healthValue">99.98%</h2>
+
+            <div class="progress-bar">
+                <div id="healthProgress"
+                     class="progress health-progress"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Active Users -->
+
+    <div class="metric-card">
+
+        <div class="metric-icon users">
+            <i class="bi bi-people-fill"></i>
+        </div>
+
+        <div class="metric-content">
+
+            <span class="metric-title">Active Users</span>
+
+            <h2 id="usersValue">12,847</h2>
+
+            <div class="progress-bar">
+                <div id="usersProgress"
+                     class="progress users-progress"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- Floating Status Panel -->
+<!-- ========================================= -->
+
+<div class="floating-panel">
+
+    <div class="panel-header">
+
+        <i class="bi bi-activity"></i>
+
+        <span>Live Monitoring</span>
+
+    </div>
+
+    <div class="panel-item">
+
+        <span>API Gateway</span>
+
+        <span class="status success">
+            <i class="bi bi-check-circle-fill"></i>
+            Healthy
+        </span>
+
+    </div>
+
+    <div class="panel-item">
+
+        <span>Auth Service</span>
+
+        <span class="status success">
+            <i class="bi bi-check-circle-fill"></i>
+            Running
+        </span>
+
+    </div>
+
+    <div class="panel-item">
+
+        <span>User Service</span>
+
+        <span class="status warning">
+            <i class="bi bi-arrow-repeat"></i>
+            Scaling
+        </span>
+
+    </div>
+
+    <div class="panel-item">
+
+        <span>Database</span>
+
+        <span class="status success">
+            <i class="bi bi-check-circle-fill"></i>
+            Connected
+        </span>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- Trusted Technologies Section Starts -->
+<!-- ========================================= -->
+
+<section id="technologies" class="technologies">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+
+                <i class="bi bi-stars"></i>
+
+                Technologies
+
+            </span>
+
+            <h2>
+
+                Built With Modern Technologies
+
+            </h2>
+
+            <p>
+
+                Architecture Studio integrates industry-standard tools used
+                to design, deploy and monitor modern distributed systems.
+
+            </p>
+
+        </div>
+
+        <div class="tech-grid">
+
+            <!-- ========================================= -->
+<!-- Technology Cards -->
+<!-- ========================================= -->
+
+<div class="tech-card">
+
+    <div class="tech-icon spring">
+        <i class="bi bi-cup-hot-fill"></i>
+    </div>
+
+    <h3>Spring Boot</h3>
+
+    <p>REST APIs, Security, JPA, JWT Authentication and Microservices.</p>
+
+</div>
+
+<div class="tech-card">
+
+    <div class="tech-icon react">
+        <i class="bi bi-code-slash"></i>
+    </div>
+
+    <h3>React</h3>
+
+    <p>Modern component-based UI with fast rendering and interactive dashboards.</p>
+
+</div>
+
+<div class="tech-card">
+
+    <div class="tech-icon postgres">
+        <i class="bi bi-database-fill"></i>
+    </div>
+
+    <h3>PostgreSQL</h3>
+
+    <p>Reliable relational database for enterprise-scale applications.</p>
+
+</div>
+
+<div class="tech-card">
+
+    <div class="tech-icon redis">
+        <i class="bi bi-lightning-charge-fill"></i>
+    </div>
+
+    <h3>Redis</h3>
+
+    <p>Ultra-fast caching layer for low latency and high performance.</p>
+
+</div>
+
+<div class="tech-card">
+
+    <div class="tech-icon kafka">
+        <i class="bi bi-broadcast-pin"></i>
+    </div>
+
+    <h3>Apache Kafka</h3>
+
+    <p>Real-time event streaming and asynchronous communication.</p>
+
+</div>
+
+<div class="tech-card">
+
+    <div class="tech-icon docker">
+        <i class="bi bi-box-seam-fill"></i>
+    </div>
+
+    <h3>Docker</h3>
+
+    <p>Containerize services for consistent deployment across environments.</p>
+
+</div>
+
+<div class="tech-card">
+
+    <div class="tech-icon kubernetes">
+        <i class="bi bi-diagram-3-fill"></i>
+    </div>
+
+    <h3>Kubernetes</h3>
+
+    <p>Automatic scaling, orchestration and management of containers.</p>
+
+</div>
+
+<div class="tech-card">
+
+    <div class="tech-icon aws">
+        <i class="bi bi-cloud-fill"></i>
+    </div>
+
+    <h3>AWS Cloud</h3>
+
+    <p>Deploy scalable distributed systems on cloud infrastructure.</p>
+
+</div>
+
+<div class="tech-card">
+
+    <div class="tech-icon tech-gateway">
+        <i class="bi bi-hdd-network-fill"></i>
+    </div>
+
+    <h3>API Gateway</h3>
+
+    <p>Centralized routing, authentication and request management.</p>
+
+</div>
+
+<div class="tech-card">
+
+    <div class="tech-icon security">
+        <i class="bi bi-shield-lock-fill"></i>
+    </div>
+
+    <h3>Spring Security</h3>
+
+    <p>JWT Authentication, authorization and role-based access control.</p>
+
+</div>
+
+<div class="tech-card">
+
+    <div class="tech-icon monitoring">
+        <i class="bi bi-activity"></i>
+    </div>
+
+    <h3>Monitoring</h3>
+
+    <p>Track latency, throughput, CPU usage and system health in real time.</p>
+
+</div>
+
+<div class="tech-card">
+
+    <div class="tech-icon architecture">
+        <i class="bi bi-bezier2"></i>
+    </div>
+
+    <h3>System Design</h3>
+
+    <p>Build scalable, fault-tolerant and production-ready architectures visually.</p>
+
+</div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- Technology Statistics -->
+<!-- ========================================= -->
+
+<div class="tech-stats">
+
+    <div class="tech-stat">
+
+        <h2>12+</h2>
+
+        <span>Core Technologies</span>
+
+    </div>
+
+    <div class="tech-stat">
+
+        <h2>50+</h2>
+
+        <span>Architecture Components</span>
+
+    </div>
+
+    <div class="tech-stat">
+
+        <h2>15+</h2>
+
+        <span>Simulation Scenarios</span>
+
+    </div>
+
+    <div class="tech-stat">
+
+        <h2>99.9%</h2>
+
+        <span>System Reliability</span>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- Features Section Starts -->
+<!-- ========================================= -->
+
+<section id="features" class="features">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+
+                <i class="bi bi-grid-1x2-fill"></i>
+
+                Features
+
+            </span>
+
+            <h2>
+
+                Everything You Need To Design Modern Systems
+
+            </h2>
+
+            <p>
+
+                Powerful tools to build, simulate, optimize and analyze distributed software architectures.
+
+            </p>
+
+        </div>
+
+        <div class="features-grid">
+
+            <!-- ========================================= -->
+<!-- Feature Card 1 -->
+<!-- ========================================= -->
+
+<div class="feature-card">
+
+    <div class="feature-icon design">
+        <i class="bi bi-vector-pen"></i>
+    </div>
+
+    <h3>Visual Architecture Designer</h3>
+
+    <p>
+        Drag, drop and connect distributed system components using an
+        intuitive visual interface.
+    </p>
+
+    <ul class="feature-list">
+        <li><i class="bi bi-check-circle-fill"></i> Drag & Drop Canvas</li>
+        <li><i class="bi bi-check-circle-fill"></i> Smart Connections</li>
+        <li><i class="bi bi-check-circle-fill"></i> Multiple Components</li>
+    </ul>
+
+</div>
+
+<!-- ========================================= -->
+
+<div class="feature-card">
+
+    <div class="feature-icon simulation">
+        <i class="bi bi-play-circle-fill"></i>
+    </div>
+
+    <h3>Real-Time Simulation</h3>
+
+    <p>
+        Simulate traffic spikes, service failures, latency and system
+        behaviour instantly.
+    </p>
+
+    <ul class="feature-list">
+        <li><i class="bi bi-check-circle-fill"></i> Traffic Simulation</li>
+        <li><i class="bi bi-check-circle-fill"></i> Failure Injection</li>
+        <li><i class="bi bi-check-circle-fill"></i> Auto Scaling</li>
+    </ul>
+
+</div>
+
+<!-- ========================================= -->
+
+<div class="feature-card">
+
+    <div class="feature-icon analytics">
+        <i class="bi bi-graph-up-arrow"></i>
+    </div>
+
+    <h3>Performance Analytics</h3>
+
+    <p>
+        Monitor latency, throughput, CPU utilization and memory usage
+        in beautiful dashboards.
+    </p>
+
+    <ul class="feature-list">
+        <li><i class="bi bi-check-circle-fill"></i> Live Metrics</li>
+        <li><i class="bi bi-check-circle-fill"></i> Performance Graphs</li>
+        <li><i class="bi bi-check-circle-fill"></i> Bottleneck Detection</li>
+    </ul>
+
+</div>
+
+<!-- ========================================= -->
+
+<div class="feature-card">
+
+    <div class="feature-icon security">
+        <i class="bi bi-shield-lock-fill"></i>
+    </div>
+
+    <h3>Security Ready</h3>
+
+    <p>
+        Simulate secure architectures using API Gateway,
+        JWT Authentication and Role-Based Access Control.
+    </p>
+
+    <ul class="feature-list">
+        <li><i class="bi bi-check-circle-fill"></i> JWT Security</li>
+        <li><i class="bi bi-check-circle-fill"></i> API Gateway</li>
+        <li><i class="bi bi-check-circle-fill"></i> Role Management</li>
+    </ul>
+
+</div>
+
+<!-- ========================================= -->
+
+<div class="feature-card">
+
+    <div class="feature-icon report">
+        <i class="bi bi-file-earmark-bar-graph-fill"></i>
+    </div>
+
+    <h3>Detailed Reports</h3>
+
+    <p>
+        Export professional reports with architecture diagrams,
+        simulation results and optimization suggestions.
+    </p>
+
+    <ul class="feature-list">
+        <li><i class="bi bi-check-circle-fill"></i> PDF Reports</li>
+        <li><i class="bi bi-check-circle-fill"></i> PNG Export</li>
+        <li><i class="bi bi-check-circle-fill"></i> Simulation Summary</li>
+    </ul>
+
+</div>
+
+<!-- ========================================= -->
+
+<div class="feature-card">
+
+    <div class="feature-icon cloud">
+        <i class="bi bi-cloud-arrow-up-fill"></i>
+    </div>
+
+    <h3>Cloud Native Ready</h3>
+
+    <p>
+        Design enterprise-grade cloud architectures using
+        Docker, Kubernetes, Kafka and Microservices.
+    </p>
+
+    <ul class="feature-list">
+        <li><i class="bi bi-check-circle-fill"></i> Docker</li>
+        <li><i class="bi bi-check-circle-fill"></i> Kubernetes</li>
+        <li><i class="bi bi-check-circle-fill"></i> Kafka</li>
+    </ul>
+
+</div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- Feature Highlights -->
+<!-- ========================================= -->
+
+<div class="feature-highlight">
+
+    <div class="highlight-card">
+
+        <div class="highlight-icon">
+            <i class="bi bi-lightning-charge-fill"></i>
+        </div>
+
+        <div>
+
+            <h3>Fast & Interactive</h3>
+
+            <p>
+                Design enterprise software architecture in minutes.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="highlight-card">
+
+        <div class="highlight-icon">
+            <i class="bi bi-cpu-fill"></i>
+        </div>
+
+        <div>
+
+            <h3>AI Ready</h3>
+
+            <p>
+                Future support for AI-powered architecture suggestions.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div class="highlight-card">
+
+        <div class="highlight-icon">
+            <i class="bi bi-stars"></i>
+        </div>
+
+        <div>
+
+            <h3>Portfolio Quality</h3>
+
+            <p>
+                Build projects worthy of interviews and GitHub portfolios.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- Workflow Section Starts -->
+<!-- ========================================= -->
+
+<section id="workflow" class="workflow">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+
+                <i class="bi bi-diagram-3"></i>
+
+                Workflow
+
+            </span>
+
+            <h2>
+
+                From Design To Deployment
+
+            </h2>
+
+            <p>
+
+                Follow a professional software architecture workflow.
+
+            </p>
+
+        </div>
+
+        <div class="workflow-timeline">
+
+            <!-- ========================================= -->
+<!-- Workflow Timeline -->
+<!-- ========================================= -->
+
+<div class="timeline">
+
+    <!-- Step 1 -->
+
+    <div class="timeline-item">
+
+        <div class="timeline-number">
+            01
+        </div>
+
+        <div class="timeline-content">
+
+            <div class="timeline-icon design">
+
+                <i class="bi bi-pencil-square"></i>
+
+            </div>
+
+            <h3>Design Architecture</h3>
+
+            <p>
+
+                Build distributed systems visually using drag-and-drop
+                components including clients, gateways, services,
+                databases, queues and caches.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Arrow -->
+
+    <div class="timeline-arrow">
+
+        <i class="bi bi-arrow-right"></i>
+
+    </div>
+
+    <!-- Step 2 -->
+
+    <div class="timeline-item">
+
+        <div class="timeline-number">
+            02
+        </div>
+
+        <div class="timeline-content">
+
+            <div class="timeline-icon connect">
+
+                <i class="bi bi-diagram-3-fill"></i>
+
+            </div>
+
+            <h3>Connect Components</h3>
+
+            <p>
+
+                Link services together with intelligent routing,
+                API Gateway, Load Balancer and database
+                communication.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Arrow -->
+
+    <div class="timeline-arrow">
+
+        <i class="bi bi-arrow-right"></i>
+
+    </div>
+
+    <!-- Step 3 -->
+
+    <div class="timeline-item">
+
+        <div class="timeline-number">
+            03
+        </div>
+
+        <div class="timeline-content">
+
+            <div class="timeline-icon simulate">
+
+                <i class="bi bi-play-circle-fill"></i>
+
+            </div>
+
+            <h3>Run Simulation</h3>
+
+            <p>
+
+                Execute traffic simulation, service failures,
+                latency testing, load balancing and auto scaling.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Arrow -->
+
+    <div class="timeline-arrow">
+
+        <i class="bi bi-arrow-right"></i>
+
+    </div>
+
+    <!-- Step 4 -->
+
+    <div class="timeline-item">
+
+        <div class="timeline-number">
+            04
+        </div>
+
+        <div class="timeline-content">
+
+            <div class="timeline-icon optimize">
+
+                <i class="bi bi-speedometer2"></i>
+
+            </div>
+
+            <h3>Analyze Performance</h3>
+
+            <p>
+
+                Detect bottlenecks, monitor latency,
+                CPU utilization, memory usage and
+                response time.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Arrow -->
+
+    <div class="timeline-arrow">
+
+        <i class="bi bi-arrow-right"></i>
+
+    </div>
+
+    <!-- Step 5 -->
+
+    <div class="timeline-item">
+
+        <div class="timeline-number">
+            05
+        </div>
+
+        <div class="timeline-content">
+
+            <div class="timeline-icon report">
+
+                <i class="bi bi-file-earmark-bar-graph-fill"></i>
+
+            </div>
+
+            <h3>Generate Reports</h3>
+
+            <p>
+
+                Export architecture diagrams,
+                simulation summaries,
+                performance charts and
+                optimization recommendations.
+
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Arrow -->
+
+    <div class="timeline-arrow">
+
+        <i class="bi bi-arrow-right"></i>
+
+    </div>
+
+    <!-- Step 6 -->
+
+    <div class="timeline-item">
+
+        <div class="timeline-number">
+            06
+        </div>
+
+        <div class="timeline-content">
+
+            <div class="timeline-icon deploy">
+
+                <i class="bi bi-cloud-upload-fill"></i>
+
+            </div>
+
+            <h3>Deploy Solution</h3>
+
+            <p>
+
+                Deploy your optimized
+                architecture using Docker,
+                Kubernetes and cloud infrastructure.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- Workflow Statistics -->
+<!-- ========================================= -->
+
+<div class="workflow-stats">
+
+    <div class="workflow-card">
+
+        <h2>6</h2>
+
+        <span>Development Phases</span>
+
+    </div>
+
+    <div class="workflow-card">
+
+        <h2>25+</h2>
+
+        <span>Architecture Components</span>
+
+    </div>
+
+    <div class="workflow-card">
+
+        <h2>15+</h2>
+
+        <span>Simulation Types</span>
+
+    </div>
+
+    <div class="workflow-card">
+
+        <h2>100%</h2>
+
+        <span>Interactive Learning</span>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- Live Simulation Preview Starts -->
+<!-- ========================================= -->
+
+<section id="simulation" class="simulation-preview">
+
+    <div class="container">
+
+        <div class="section-header">
+
+            <span class="section-tag">
+
+                <i class="bi bi-play-fill"></i>
+
+                Simulation
+
+            </span>
+
+            <h2>
+
+                Experience Real-Time System Simulation
+
+            </h2>
+
+            <p>
+
+                Monitor live traffic flow, request routing,
+                latency and health metrics while your
+                distributed architecture runs.
+
+            </p>
+
+        </div>
+
+        <div class="simulation-container">
+
+           <!-- ========================================= -->
+<!-- Simulation Dashboard -->
+<!-- ========================================= -->
+
+<div class="simulation-dashboard">
+
+    <!-- Left Panel -->
+
+    <div class="simulation-left">
+
+        <div class="simulation-window">
+
+            <div class="window-header">
+
+                <div class="window-dots">
+                    <span class="red"></span>
+                    <span class="yellow"></span>
+                    <span class="green"></span>
+                </div>
+
+                <h4>Live Request Flow</h4>
+
+            </div>
+
+          <div class="flow-container" id="flowContainer">
+
+    <div id="clientNode" class="flow-node client">
+        <i class="bi bi-laptop"></i>
+        <span>Client</span>
+    </div>
+
+    <div id="gatewayNode" class="flow-node gateway">
+        <i class="bi bi-diagram-3-fill"></i>
+        <span>API Gateway</span>
+    </div>
+
+    <div class="service-row">
+
+        <div id="authNode" class="flow-node service auth">
+            <i class="bi bi-shield-lock-fill"></i>
+            <span>Auth</span>
+        </div>
+
+        <div id="userNode" class="flow-node service user">
+            <i class="bi bi-people-fill"></i>
+            <span>User</span>
+        </div>
+
+        <div id="orderNode" class="flow-node service order">
+            <i class="bi bi-cart-fill"></i>
+            <span>Order</span>
+        </div>
+
+    </div>
+
+    <div id="cacheNode" class="flow-node cache">
+        <i class="bi bi-lightning-fill"></i>
+        <span>Redis</span>
+    </div>
+
+    <div id="databaseNode" class="flow-node database">
+        <i class="bi bi-database-fill"></i>
+        <span>PostgreSQL</span>
+    </div>
+
+</div>
+
+            <!-- Dynamic Request Packets -->
+
+            <div class="request-animation">
+                <div id="requestContainer"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Right Panel -->
+
+    <div class="simulation-right">
+
+        <div class="simulation-status">
+
+            <h3>
+                <i class="bi bi-activity"></i>
+                Simulation Status
+            </h3>
+
+            <div class="status-item">
+                <span>Incoming Requests</span>
+                <strong id="incomingRequests">8921 req/min</strong>
+            </div>
+
+            <div class="status-item">
+                <span>Average Latency</span>
+                <strong id="statusLatency">19 ms</strong>
+            </div>
+
+            <div class="status-item">
+                <span>Response Time</span>
+                <strong id="responseTime">35 ms</strong>
+            </div>
+
+            <div class="status-item">
+                <span>CPU Usage</span>
+                <strong id="statusCpu">43%</strong>
+            </div>
+
+            <div class="status-item">
+                <span>Memory</span>
+                <strong id="statusMemory">4.6 GB</strong>
+            </div>
+
+            <div class="status-item">
+                <span>Success Rate</span>
+                <strong id="successRate" class="success">99.98%</strong>
+            </div>
+
+        </div>
+
+        <!-- Health Panel -->
+
+        <div class="health-panel">
+
+            <h3>
+                <i class="bi bi-heart-pulse-fill"></i>
+                Service Health
+            </h3>
+
+            <div class="health-item">
+                <span>Gateway</span>
+                <span id="gatewayHealth" class="healthy">Healthy</span>
+            </div>
+
+            <div class="health-item">
+                <span>Auth Service</span>
+                <span id="authHealth" class="healthy">Healthy</span>
+            </div>
+
+            <div class="health-item">
+                <span>User Service</span>
+                <span id="userHealth" class="healthy">Healthy</span>
+            </div>
+
+            <div class="health-item">
+                <span>Order Service</span>
+                <span id="orderHealth" class="warning">Scaling</span>
+            </div>
+
+            <div class="health-item">
+                <span>Redis Cache</span>
+                <span id="cacheHealth" class="healthy">Healthy</span>
+            </div>
+
+            <div class="health-item">
+                <span>PostgreSQL</span>
+                <span id="databaseHealth" class="healthy">Connected</span>
+            </div>
+
+        </div>
+
+       
+
+    </div>
+
+</div>
+
+
+<!-- ========================================= -->
+<!-- Simulation CTA -->
+<!-- ========================================= -->
+
+<div class="simulation-action">
+
+    <h2>
+
+        Ready to Build Enterprise Architecture?
+
+    </h2>
+
+    <p>
+
+        Design distributed systems, simulate failures,
+        monitor performance and export professional reports.
+
+    </p>
+
+    <div class="hero-buttons">
+
+        <a th:href="@{/designer}" class="btn btn-primary btn-lg">
+
+            <i class="bi bi-diagram-3-fill"></i>
+
+            Open Designer
+
+        </a>
+
+        <a th:href="@{/dashboard}" class="btn btn-secondary btn-lg">
+
+            <i class="bi bi-play-circle-fill"></i>
+
+            Run Simulation
+
+        </a>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- About / Developer Section Starts -->
+<!-- ========================================= -->
+
+<section id="developer" class="developer">
+
+    <div class="container">
+
+        <!-- ========================================= -->
+<!-- About Project -->
+<!-- ========================================= -->
+
+<div class="developer-wrapper">
+
+    <!-- Left Side -->
+
+    <div class="developer-left">
+
+        <span class="section-tag">
+
+            <i class="bi bi-person-workspace"></i>
+
+            About The Project
+
+        </span>
+
+        <h2>
+
+            Architecture Studio
+
+        </h2>
+
+        <p class="developer-description">
+
+            Architecture Studio is a modern System Design &
+            Distributed Architecture Simulator developed using
+            Spring Boot, Thymeleaf and PostgreSQL.
+
+            It enables students and developers to visually design
+            distributed systems, execute simulations,
+            monitor live performance metrics,
+            detect bottlenecks and generate professional reports.
+
+        </p>
+
+        <div class="project-highlights">
+
+            <div class="highlight-item">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                <span>Visual System Designer</span>
+
+            </div>
+
+            <div class="highlight-item">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                <span>Traffic Simulation Engine</span>
+
+            </div>
+
+            <div class="highlight-item">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                <span>Performance Analytics</span>
+
+            </div>
+
+            <div class="highlight-item">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                <span>Professional Report Generator</span>
+
+            </div>
+
+            <div class="highlight-item">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                <span>Microservice Architecture</span>
+
+            </div>
+
+            <div class="highlight-item">
+
+                <i class="bi bi-check-circle-fill"></i>
+
+                <span>Cloud Ready Design</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Right Side -->
+
+    <div class="developer-right">
+
+        <div class="developer-card">
+
+            <div class="developer-avatar">
+
+                <i class="bi bi-person-circle"></i>
+
+            </div>
+
+            <h2>Satyabrata Behera</h2>
+
+            <span class="developer-role">
+
+                Java Full Stack Developer
+
+            </span>
+
+            <p>
+
+                Passionate about Backend Development,
+                Distributed Systems,
+                Spring Boot,
+                Microservices,
+                Cloud Computing
+                and Software Architecture.
+
+            </p>
+
+            <div class="developer-skills">
+
+                <span>Java</span>
+
+                <span>Spring Boot</span>
+
+                <span>PostgreSQL</span>
+
+                <span>REST API</span>
+
+                <span>JWT</span>
+
+                <span>Docker</span>
+
+                <span>Kafka</span>
+
+                <span>Microservices</span>
+
+                <span>HTML</span>
+
+                <span>CSS</span>
+
+                <span>JavaScript</span>
+
+                <span>Thymeleaf</span>
+
+            </div>
+
+            <div class="developer-social">
+
+                <a href="https://github.com/"
+                   target="_blank">
+
+                    <i class="bi bi-github"></i>
+
+                </a>
+
+                <a href="https://linkedin.com/"
+                   target="_blank">
+
+                    <i class="bi bi-linkedin"></i>
+
+                </a>
+
+                <a href="mailto:example@gmail.com">
+
+                    <i class="bi bi-envelope-fill"></i>
+
+                </a>
+
+                <a href="#">
+
+                    <i class="bi bi-globe2"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- Project Statistics -->
+<!-- ========================================= -->
+
+<div class="project-stats">
+
+    <div class="project-stat-card">
+
+        <h2>50+</h2>
+
+        <span>Architecture Components</span>
+
+    </div>
+
+    <div class="project-stat-card">
+
+        <h2>15+</h2>
+
+        <span>Simulation Scenarios</span>
+
+    </div>
+
+    <div class="project-stat-card">
+
+        <h2>100+</h2>
+
+        <span>API Endpoints Supported</span>
+
+    </div>
+
+    <div class="project-stat-card">
+
+        <h2>99.9%</h2>
+
+        <span>System Reliability</span>
+
+    </div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ========================================= -->
+<!-- Footer Starts -->
+<!-- ========================================= -->
+
+<footer class="footer">
+
+    <div class="container">
+
+        <!-- ========================================= -->
+<!-- Footer Content -->
+<!-- ========================================= -->
+
+<div class="footer-grid">
+
+    <!-- Brand -->
+
+    <div class="footer-column">
+
+        <div class="footer-logo">
+
+            <div class="logo-icon">
+
+                <svg width="40"
+                     height="40"
+                     viewBox="0 0 64 64"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    <line x1="18" y1="18" x2="46" y2="18"/>
+                    <line x1="18" y1="18" x2="18" y2="46"/>
+                    <line x1="46" y1="18" x2="46" y2="46"/>
+                    <line x1="18" y1="46" x2="46" y2="46"/>
+                    <line x1="18" y1="18" x2="32" y2="32"/>
+                    <line x1="46" y1="18" x2="32" y2="32"/>
+                    <line x1="18" y1="46" x2="32" y2="32"/>
+                    <line x1="46" y1="46" x2="32" y2="32"/>
+
+                    <circle cx="18" cy="18" r="4"/>
+                    <circle cx="46" cy="18" r="4"/>
+                    <circle cx="18" cy="46" r="4"/>
+                    <circle cx="46" cy="46" r="4"/>
+                    <circle cx="32" cy="32" r="5"/>
+
+                </svg>
+
+            </div>
+
+            <div>
+
+                <h3>Architecture Studio</h3>
+
+                <p>
+                    Design • Simulate • Optimize
+                </p>
+
+            </div>
+
+        </div>
+
+        <p class="footer-description">
+
+            Architecture Studio is an interactive platform for
+            designing distributed software architectures,
+            simulating failures,
+            analyzing performance
+            and generating professional reports.
+
+        </p>
+
+    </div>
+
+    <!-- Navigation -->
+
+    <div class="footer-column">
+
+        <h3>Navigation</h3>
+
+        <ul>
+
+            <li><a href="#home">Home</a></li>
+
+            <li><a href="#features">Features</a></li>
+
+            <li><a href="#workflow">Workflow</a></li>
+
+            <li><a href="#simulation">Simulation</a></li>
+
+            <li><a href="#developer">Developer</a></li>
+
+        </ul>
+
+    </div>
+
+    <!-- Technologies -->
+
+    <div class="footer-column">
+
+        <h3>Technology</h3>
+
+        <ul>
+
+            <li>Spring Boot</li>
+
+            <li>PostgreSQL</li>
+
+            <li>Docker</li>
+
+            <li>Kafka</li>
+
+            <li>Redis</li>
+
+            <li>Thymeleaf</li>
+
+        </ul>
+
+    </div>
+
+    <!-- Contact -->
+
+    <div class="footer-column">
+
+        <h3>Connect</h3>
+
+        <div class="footer-social">
+
+            <a href="https://github.com/" target="_blank">
+
+                <i class="bi bi-github"></i>
+
+            </a>
+
+            <a href="https://linkedin.com/" target="_blank">
+
+                <i class="bi bi-linkedin"></i>
+
+            </a>
+
+            <a href="mailto:example@gmail.com">
+
+                <i class="bi bi-envelope-fill"></i>
+
+            </a>
+
+            <a href="#">
+
+                <i class="bi bi-globe2"></i>
+
+            </a>
+
+        </div>
+
+        <p>
+
+            Built with ❤️ using Spring Boot & Java
+
+        </p>
+
+    </div>
+
+</div>
+
+<!-- ========================================= -->
+<!-- Bottom Footer -->
+<!-- ========================================= -->
+
+<div class="footer-bottom">
+
+    <p>
+
+        © 2026 Architecture Studio.
+        All Rights Reserved.
+
+    </p>
+
+    <div class="footer-bottom-links">
+
+        <a href="#">Privacy</a>
+
+        <a href="#">Terms</a>
+
+        <a href="#">Documentation</a>
+
+    </div>
+
+</div>
+
+</div>
+
+</footer>
+
+<!-- ========================================= -->
+<!-- Back To Top -->
+<!-- ========================================= -->
+
+<button id="backToTop"
+        class="back-to-top">
+
+    <i class="bi bi-arrow-up"></i>
+
+</button>
+
+<!-- ========================================= -->
+<!-- JavaScript -->
+<!-- ========================================= -->
+
+<script th:src="@{/js/landing.js}"></script>
+
+<script src="/js/landing.js"></script>
+
+<script src="/js/simulation/simulation.js"></script>
+<script src="/js/simulation/request.js"></script>
+<script src="/js/simulation/metrics.js"></script>
+<script src="/js/simulation/monitor.js"></script>
+<script src="/js/simulation/scaling.js"></script>
+<script src="/js/simulation/failure.js"></script>
+<script src="/js/simulation/logs.js"></script>
+<script src="/js/simulation/report.js"></script>
+
+</body>
+
+</html>
