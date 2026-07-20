@@ -1,8 +1,7 @@
-package com.SoftwareArchitectiurePlayGround.SoftwareArchitecturePlayground.Security;
+package com.SoftwareArchitectiurePlayGround.SoftwareArchitecturePlayground.security;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -14,8 +13,12 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> findByEmail(String email) {
-        return userRepository.findByEmail(email);
+    public User findByEmail(String email) {
+
+        return userRepository.findByEmail(email)
+                .orElseThrow(() ->
+                        new UserNotFoundException("User not found with email: " + email));
+
     }
 
     public boolean existsByEmail(String email) {

@@ -1,4 +1,4 @@
-package com.SoftwareArchitectiurePlayGround.SoftwareArchitecturePlayground.Security;
+package com.SoftwareArchitectiurePlayGround.SoftwareArchitecturePlayground.security;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
@@ -40,9 +40,10 @@ public class User {
     @Builder.Default
     private Role role = Role.USER;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "account_status", nullable = false)
     @Builder.Default
-    private String accountStatus = "ACTIVE";
+    private AccountStatus accountStatus = AccountStatus.ACTIVE;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

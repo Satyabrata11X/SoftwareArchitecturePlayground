@@ -1,4 +1,4 @@
-package com.SoftwareArchitectiurePlayGround.SoftwareArchitecturePlayground.Security;
+package com.SoftwareArchitectiurePlayGround.SoftwareArchitecturePlayground.security;
 
 
 
