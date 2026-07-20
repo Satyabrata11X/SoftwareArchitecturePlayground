@@ -1,0 +1,182 @@
+@import url("login.css");
+
+/* Register-specific styles */
+
+.terms{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:#cbd5e1;
+    font-size:14px;
+    margin:10px 0 20px;
+}
+
+.terms input{
+    accent-color:#3b82f6;
+}
+
+/* =========================================
+   REGISTER PAGE FIXES
+========================================= */
+
+/* Register Form */
+
+#registerForm{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+/* Card */
+
+.login-card{
+
+    max-width:520px;
+
+    padding:42px 45px;
+
+}
+
+/* Button */
+
+.login-btn{
+
+    width:100%;
+
+    height:60px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-size:17px;
+
+    font-weight:600;
+
+}
+
+/* Terms */
+
+.terms{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:4px 0 10px;
+
+    font-size:15px;
+
+    color:#cbd5e1;
+
+    cursor:pointer;
+
+}
+
+.terms input{
+
+    width:18px;
+
+    height:18px;
+
+    accent-color:#3b82f6;
+
+}
+
+/* Footer */
+
+.login-footer{
+
+    margin-top:20px;
+
+}
+
+/* Input spacing */
+
+.input-group{
+
+    margin:0;
+
+}
+
+/* Inputs */
+
+.input-group input{
+
+    height:58px;
+
+}
+
+/* Register Heading */
+
+.login-card h2{
+
+    margin-bottom:8px;
+
+}
+
+.login-card > p{
+
+    margin-bottom:28px;
+
+}
+
+/* Branding */
+
+.branding{
+
+    gap:12px;
+
+}
+
+.branding h1{
+
+    font-size:46px;
+
+    max-width:600px;
+
+}
+
+.branding p{
+
+    max-width:520px;
+
+}
+
+/* Architecture */
+
+.mini-architecture{
+
+    transform:scale(.92);
+
+    transform-origin:top left;
+
+    margin-top:-10px;
+
+}
+
+/* Mobile */
+
+@media(max-width:768px){
+
+    .login-card{
+
+        padding:30px 22px;
+
+    }
+
+    .mini-architecture{
+
+        transform:scale(.85);
+
+        transform-origin:center;
+
+    }
+
+}

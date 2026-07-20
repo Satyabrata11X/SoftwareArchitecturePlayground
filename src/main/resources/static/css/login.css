@@ -1,0 +1,1239 @@
+/*=========================================================
+    Architecture Studio
+=========================================================*/
+
+/*=========================================
+Google Font
+=========================================*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+/*=========================================
+Variables
+=========================================*/
+
+:root{
+
+    --primary:#3b82f6;
+    --primary-light:#60a5fa;
+    --secondary:#8b5cf6;
+
+    --bg:#030712;
+    --bg-secondary:#0f172a;
+
+    --card:#111827;
+    --glass:rgba(255,255,255,.05);
+
+    --border:rgba(255,255,255,.08);
+
+    --text:#ffffff;
+    --text-light:#cbd5e1;
+    --text-muted:#94a3b8;
+
+    --radius:22px;
+
+    --shadow:
+            0 25px 60px rgba(0,0,0,.45);
+
+    --transition:.35s ease;
+
+}
+
+/*=========================================
+Reset
+=========================================*/
+
+*{
+
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+
+}
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+body{
+
+    font-family:'Poppins',sans-serif;
+
+    background:var(--bg);
+
+    color:var(--text);
+
+    overflow:hidden;
+
+    min-height:100vh;
+
+}
+
+/*=========================================
+Selection
+=========================================*/
+
+::selection{
+
+    background:var(--primary);
+
+    color:white;
+
+}
+
+/*=========================================
+Scrollbar
+=========================================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#020617;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(
+            var(--primary),
+            var(--secondary)
+    );
+
+    border-radius:20px;
+
+}
+
+/*=========================================
+Links
+=========================================*/
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+/*=========================================
+Background
+=========================================*/
+
+.background{
+
+    position:fixed;
+
+    inset:0;
+
+    overflow:hidden;
+
+    z-index:-10;
+
+}
+
+/*=========================================
+Aurora Gradients
+=========================================*/
+
+.gradient{
+
+    position:absolute;
+
+    width:650px;
+
+    height:650px;
+
+    border-radius:50%;
+
+    filter:blur(130px);
+
+    opacity:.28;
+
+    animation:floatGradient 16s ease-in-out infinite;
+
+}
+
+.gradient1{
+
+    top:-220px;
+
+    left:-180px;
+
+    background:#2563eb;
+
+}
+
+.gradient2{
+
+    top:20%;
+
+    right:-180px;
+
+    background:#9333ea;
+
+    animation-delay:4s;
+
+}
+
+.gradient3{
+
+    bottom:-250px;
+
+    left:35%;
+
+    background:#06b6d4;
+
+    animation-delay:8s;
+
+}
+
+/*=========================================
+Grid Overlay
+=========================================*/
+
+.grid-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+            linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),
+
+            linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+
+    background-size:45px 45px;
+
+    mask-image:
+
+            radial-gradient(circle at center,
+
+            black,
+
+            transparent 90%);
+
+}
+
+/*=========================================
+Noise
+=========================================*/
+
+.noise{
+
+    position:absolute;
+
+    inset:0;
+
+    opacity:.03;
+
+    background-image:
+
+            url("https://www.transparenttextures.com/patterns/noise.png");
+
+}
+
+/*=========================================
+Particles
+=========================================*/
+
+.particles{
+
+    position:fixed;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:-5;
+
+}
+
+.particles span{
+
+    position:absolute;
+
+    width:7px;
+
+    height:7px;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.25);
+
+    animation:particleFloat 16s linear infinite;
+
+}
+
+.particles span:nth-child(1){
+
+    top:10%;
+    left:8%;
+
+}
+
+.particles span:nth-child(2){
+
+    top:22%;
+    left:85%;
+
+}
+
+.particles span:nth-child(3){
+
+    top:60%;
+    left:12%;
+
+}
+
+.particles span:nth-child(4){
+
+    top:38%;
+    left:72%;
+
+}
+
+.particles span:nth-child(5){
+
+    top:82%;
+    left:45%;
+
+}
+
+.particles span:nth-child(6){
+
+    top:18%;
+    left:52%;
+
+}
+
+.particles span:nth-child(7){
+
+    top:90%;
+    left:88%;
+
+}
+
+.particles span:nth-child(8){
+
+    top:58%;
+    left:78%;
+
+}
+
+.particles span:nth-child(9){
+
+    top:92%;
+    left:22%;
+
+}
+
+.particles span:nth-child(10){
+
+    top:35%;
+    left:28%;
+
+}
+
+/*=========================================
+Wrapper
+=========================================*/
+
+.login-wrapper{
+
+    width:min(1400px,92%);
+
+    margin:auto;
+
+    min-height:100vh;
+
+    display:grid;
+
+    grid-template-columns:1.1fr .9fr;
+
+    align-items:center;
+
+    gap:70px;
+
+    animation:fadeUp .9s ease;
+
+}
+
+/*=========================================
+Responsive
+=========================================*/
+
+@media(max-width:1100px){
+
+    .login-wrapper{
+
+        grid-template-columns:1fr;
+
+        gap:40px;
+
+        padding:60px 0;
+
+        overflow:auto;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    body{
+
+        overflow:auto;
+
+    }
+
+}
+
+/*=========================================
+Animations
+=========================================*/
+
+@keyframes floatGradient{
+
+    0%,100%{
+
+        transform:translateY(0);
+
+    }
+
+    50%{
+
+        transform:translateY(70px);
+
+    }
+
+}
+
+@keyframes particleFloat{
+
+    from{
+
+        transform:translateY(0) scale(.7);
+
+        opacity:.25;
+
+    }
+
+    to{
+
+        transform:translateY(-120vh) scale(1.5);
+
+        opacity:0;
+
+    }
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/*=========================================================
+    Branding Section
+=========================================================*/
+
+/*=========================================
+Branding Panel
+=========================================*/
+
+.branding{
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:28px;
+
+    animation:slideLeft .9s ease;
+
+}
+
+/*=========================================
+Logo
+=========================================*/
+
+.logo{
+
+    display:flex;
+    align-items:center;
+    gap:18px;
+
+    width:max-content;
+
+}
+
+.logo-icon{
+
+    width:70px;
+    height:70px;
+
+    border-radius:18px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    backdrop-filter:blur(20px);
+
+    box-shadow:
+            0 0 30px rgba(59,130,246,.18);
+
+    transition:var(--transition);
+
+}
+
+.logo:hover .logo-icon{
+
+    transform:translateY(-5px) rotate(-5deg);
+
+    box-shadow:
+            0 15px 40px rgba(59,130,246,.35);
+
+}
+
+.logo-icon svg{
+
+    width:42px;
+    height:42px;
+
+    stroke:var(--primary);
+    stroke-width:2.5;
+    fill:none;
+
+}
+
+.logo-icon circle{
+
+    fill:var(--primary);
+
+}
+
+/*=========================================
+Logo Text
+=========================================*/
+
+.logo-text{
+
+    display:flex;
+    flex-direction:column;
+
+}
+
+.logo-text .title{
+
+    font-size:28px;
+    font-weight:700;
+
+    color:white;
+
+    line-height:1;
+
+}
+
+.logo-text .subtitle{
+
+    margin-top:6px;
+
+    font-size:15px;
+
+    color:var(--primary-light);
+
+    letter-spacing:4px;
+
+    text-transform:uppercase;
+
+}
+
+/*=========================================
+Heading
+=========================================*/
+
+.branding h1{
+
+    font-size:42px;
+
+    font-weight:800;
+
+    line-height:1.1;
+
+    max-width:620px;
+
+    background:linear-gradient(
+            90deg,
+            white,
+            #c7d2fe,
+            #60a5fa
+    );
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+.branding p{
+
+    max-width:500px;
+
+    color:var(--text-light);
+
+    line-height:1.9;
+
+    font-size:17px;
+
+}
+
+/* Branding */
+
+.branding{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    gap:15px;
+}
+
+.branding h1{
+    font-size:48px;
+    font-weight:700;
+}
+
+.branding p{
+    color:#cbd5e1;
+    line-height:1.8;
+    max-width:560px;
+}
+/*==================================================
+ MINI ARCHITECTURE
+==================================================*/
+
+.mini-architecture{
+
+    width:fit-content;
+    max-width:none;
+
+    margin-top:-15px;
+
+    padding:20px 25px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    gap:18px;
+
+    background:rgba(255,255,255,.03);
+
+    border:1px solid rgba(255,255,255,.06);
+
+    border-radius:20px;
+
+    backdrop-filter:blur(20px);
+
+}
+
+/*==========================
+ Common Node
+==========================*/
+
+.node{
+
+    width:110px;
+    height:75px;
+
+    border-radius:16px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    background:rgba(255,255,255,.05);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    transition:.3s;
+
+}
+
+.node:hover{
+
+    transform:translateY(-4px);
+
+    border-color:#3b82f6;
+
+    box-shadow:0 10px 25px rgba(59,130,246,.25);
+
+}
+
+.node i{
+
+    font-size:22px;
+
+    color:#3b82f6;
+
+    margin-bottom:8px;
+
+}
+
+.node span{
+
+    font-size:13px;
+
+    font-weight:600;
+
+    color:#fff;
+
+}
+
+/*==========================
+ Vertical Line
+==========================*/
+
+.line{
+
+    width:2px;
+
+    height:22px;
+
+    background:linear-gradient(
+            to bottom,
+            #3b82f6,
+            #8b5cf6
+    );
+
+}
+
+/*==========================
+ Services Row
+==========================*/
+
+.services{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    width: auto;
+}
+
+.services .node{
+
+    width:95px;
+
+    height:72px;
+
+}
+
+/*==========================
+ Database
+==========================*/
+
+.database-node{
+
+    width:140px;
+
+}
+
+/*==========================
+ Responsive
+==========================*/
+
+@media(max-width:768px){
+
+    .mini-architecture{
+
+        max-width:100%;
+
+    }
+
+    .services{
+
+        gap:10px;
+
+    }
+
+    .services .node{
+
+        width:90px;
+
+        height:68px;
+
+    }
+
+}
+/*=========================================================
+    Login Card
+=========================================================*/
+
+/*=========================================
+Login Section
+=========================================*/
+
+.login-section{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    animation:slideRight .9s ease;
+
+}
+
+/*=========================================
+Glass Card
+=========================================*/
+
+.login-card{
+
+    width:100%;
+    max-width:520px;
+
+    padding:55px;
+
+    border-radius:30px;
+
+    background:rgba(17,24,39,.78);
+
+    backdrop-filter:blur(35px);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+            0 30px 70px rgba(0,0,0,.45),
+            0 0 60px rgba(59,130,246,.08);
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+/* top glow */
+
+.login-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-120px;
+    right:-120px;
+
+    width:240px;
+    height:240px;
+
+    border-radius:50%;
+
+    background:rgba(59,130,246,.18);
+
+    filter:blur(70px);
+
+}
+
+.login-card::after{
+
+    content:"";
+
+    position:absolute;
+
+    bottom:-140px;
+    left:-120px;
+
+    width:250px;
+    height:250px;
+
+    border-radius:50%;
+
+    background:rgba(139,92,246,.16);
+
+    filter:blur(80px);
+
+}
+
+/*=========================================
+Heading
+=========================================*/
+
+.login-card h2{
+
+    position:relative;
+    z-index:2;
+
+    font-size:38px;
+
+    font-weight:700;
+
+    margin-bottom:10px;
+
+    color:#fff;
+
+}
+
+.login-card>p{
+
+    position:relative;
+    z-index:2;
+
+    color:var(--text-light);
+
+    margin-bottom:40px;
+
+    line-height:1.7;
+
+}
+
+/*=========================================
+Form
+=========================================*/
+
+#loginForm{
+
+    position:relative;
+
+    z-index:2;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:24px;
+
+}
+
+/*=========================================
+Input Group
+=========================================*/
+
+.input-group{
+
+    position:relative;
+
+}
+
+.input-group i{
+
+    position:absolute;
+
+    top:50%;
+    left:20px;
+
+    transform:translateY(-50%);
+
+    color:var(--primary);
+
+    font-size:18px;
+
+}
+
+.input-group input{
+
+    width:100%;
+
+    height:62px;
+
+    border-radius:16px;
+
+    border:1px solid rgba(255,255,255,.08);
+
+    background:rgba(255,255,255,.04);
+
+    color:white;
+
+    padding-left:58px;
+
+    padding-right:58px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:all .35s ease;
+
+}
+
+.input-group input::placeholder{
+
+    color:#94a3b8;
+
+}
+
+.input-group input:focus{
+
+    border-color:var(--primary);
+
+    background:rgba(255,255,255,.06);
+
+    box-shadow:
+            0 0 0 4px rgba(59,130,246,.12);
+
+}
+
+/*=========================================
+Password Toggle
+=========================================*/
+
+.password-toggle{
+
+    position:absolute;
+
+    right:16px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    width:38px;
+
+    height:38px;
+
+    border:none;
+
+    background:none;
+
+    color:#94a3b8;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.password-toggle:hover{
+
+    color:white;
+
+}
+
+/*=========================================
+Options
+=========================================*/
+
+.options{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-top:-5px;
+
+    margin-bottom:5px;
+
+}
+
+.options label{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:var(--text-light);
+
+    font-size:14px;
+
+    cursor:pointer;
+
+}
+
+.options input{
+
+    accent-color:var(--primary);
+
+}
+
+.options a{
+
+    color:var(--primary-light);
+
+    font-size:14px;
+
+    transition:.3s;
+
+}
+
+.options a:hover{
+
+    color:white;
+
+}
+
+/*=========================================
+Login Button
+=========================================*/
+
+.login-btn{
+
+    height:60px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+    );
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:12px;
+
+    transition:all .35s ease;
+
+    box-shadow:
+            0 15px 35px rgba(59,130,246,.30);
+
+}
+
+.login-btn:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:
+            0 22px 45px rgba(59,130,246,.45);
+
+}
+
+.login-btn:active{
+
+    transform:scale(.98);
+
+}
+
+/*=========================================
+Footer
+=========================================*/
+
+.login-footer{
+
+    position:relative;
+
+    z-index:2;
+
+    margin-top:35px;
+
+    text-align:center;
+
+    color:var(--text-light);
+
+    font-size:15px;
+
+}
+
+.login-footer a{
+
+    color:var(--primary-light);
+
+    font-weight:600;
+
+    margin-left:6px;
+
+    transition:.3s;
+
+}
+
+.login-footer a:hover{
+
+    color:white;
+
+}
+
+/*=========================================
+Responsive
+=========================================*/
+
+@media(max-width:768px){
+
+    .login-card{
+
+        padding:35px 25px;
+
+    }
+
+    .login-card h2{
+
+        font-size:30px;
+
+    }
+
+    .options{
+
+        flex-direction:column;
+
+        gap:15px;
+
+        align-items:flex-start;
+
+    }
+
+}
+
+/*=========================================
+Animation
+=========================================*/
+
+@keyframes slideRight{
+
+    from{
+
+        opacity:0;
+
+        transform:translateX(60px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateX(0);
+
+    }
+
+}
