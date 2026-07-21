@@ -1,0 +1,614 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Arc Studio | Dashboard</title>
+
+    <link rel="stylesheet" th:href="@{/css/dashboard.css}">
+
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- ==========================================
+                    SIDEBAR
+    =========================================== -->
+
+    <aside class="sidebar">
+
+        <!-- Logo -->
+
+        <a href="/dashboard" class="logo">
+
+            <div class="logo-icon">
+
+                <svg width="48"
+                     height="48"
+                     viewBox="0 0 64 64"
+                     xmlns="http://www.w3.org/2000/svg">
+
+                    <line x1="18" y1="18" x2="46" y2="18"/>
+                    <line x1="18" y1="18" x2="18" y2="46"/>
+                    <line x1="46" y1="18" x2="46" y2="46"/>
+                    <line x1="18" y1="46" x2="46" y2="46"/>
+
+                    <line x1="18" y1="18" x2="32" y2="32"/>
+                    <line x1="46" y1="18" x2="32" y2="32"/>
+                    <line x1="18" y1="46" x2="32" y2="32"/>
+                    <line x1="46" y1="46" x2="32" y2="32"/>
+
+                    <circle cx="18" cy="18" r="4"/>
+                    <circle cx="46" cy="18" r="4"/>
+                    <circle cx="18" cy="46" r="4"/>
+                    <circle cx="46" cy="46" r="4"/>
+                    <circle cx="32" cy="32" r="5"/>
+
+                </svg>
+
+            </div>
+
+            <div class="logo-text">
+
+                <h2>Architecture</h2>
+
+                <span>Studio</span>
+
+            </div>
+
+        </a>
+
+        <!-- Navigation -->
+
+        <nav class="sidebar-menu">
+
+            <a href="/dashboard" class="menu-item active">
+
+                <i data-lucide="layout-dashboard"></i>
+
+                <span>Dashboard</span>
+
+            </a>
+
+            <a href="/designer" class="menu-item">
+
+                <i data-lucide="cpu"></i>
+
+                <span>Architecture Lab</span>
+
+            </a>
+
+            <a href="/projects" class="menu-item">
+
+                <i data-lucide="folder-kanban"></i>
+
+                <span>Projects</span>
+
+            </a>
+
+            <a href="/reports" class="menu-item">
+
+                <i data-lucide="file-text"></i>
+
+                <span>Reports</span>
+
+            </a>
+
+        </nav>
+
+        <!-- Logout -->
+
+        <div class="sidebar-bottom">
+
+            <a href="/login" class="menu-item logout">
+
+                <i data-lucide="log-out"></i>
+
+                <span>Logout</span>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- ==========================================
+                    MAIN CONTENT
+    =========================================== -->
+
+    <main class="main-content">
+
+        <!-- ==========================================
+                TOP NAVBAR
+========================================== -->
+
+<header class="top-navbar">
+
+    <div class="page-title">
+
+        <h1>Dashboard</h1>
+
+        <p id="currentDate">
+            Loading...
+        </p>
+
+    </div>
+
+    <div class="profile-section">
+
+        <div class="profile-info">
+
+            <span class="welcome-text">
+
+                Welcome Back
+
+            </span>
+
+            <h3 id="userName">
+
+                Satya Brata
+
+            </h3>
+
+        </div>
+
+        <div class="profile-avatar">
+
+            S
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- ==========================================
+                HERO SECTION
+========================================== -->
+
+<section class="hero-section">
+
+    <div class="hero-left">
+
+        <span class="hero-badge">
+
+            🚀 Arc Studio Platform
+
+        </span>
+
+        <h2 id="greeting">
+
+            Good Evening 👋
+
+        </h2>
+
+        <p>
+
+            Design, simulate and optimize scalable software architectures with an interactive visual workspace.
+
+        </p>
+
+        <div class="hero-buttons">
+
+            <button class="primary-btn">
+
+                <i data-lucide="play"></i>
+
+                Continue Project
+
+            </button>
+
+            <button class="secondary-btn">
+
+                <i data-lucide="plus"></i>
+
+                New Architecture
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <div class="hero-right">
+
+        <div class="hero-card">
+
+            <div class="hero-card-header">
+
+                <h3>
+
+                    Current Workspace
+
+                </h3>
+
+                <span class="status-live">
+
+                    ● Active
+
+                </span>
+
+            </div>
+
+            <div class="hero-card-body">
+
+                <h2>
+
+                    E-Commerce Microservice
+
+                </h2>
+
+                <p>
+
+                    Last modified today at 2:45 PM
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+                STATISTICS
+========================================== -->
+
+<section class="stats-grid">
+
+    <div class="stat-card">
+
+        <i data-lucide="folder-kanban"></i>
+
+        <h3 class="counter" data-target="12">
+
+            0
+
+        </h3>
+
+        <p>
+
+            Projects
+
+        </p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i data-lucide="activity"></i>
+
+        <h3 class="counter" data-target="48">
+
+            0
+
+        </h3>
+
+        <p>
+
+            Simulations
+
+        </p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i data-lucide="file-text"></i>
+
+        <h3 class="counter" data-target="18">
+
+            0
+
+        </h3>
+
+        <p>
+
+            Reports
+
+        </p>
+
+    </div>
+
+    <div class="stat-card">
+
+        <i data-lucide="badge-check"></i>
+
+        <h3 class="counter" data-target="96">
+
+            0
+
+        </h3>
+
+        <p>
+
+            Health Score
+
+        </p>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+                DASHBOARD GRID
+========================================== -->
+
+<div class="dashboard-grid">
+
+    <!-- ==========================
+            RECENT PROJECTS
+    =========================== -->
+
+    <section class="dashboard-card recent-projects">
+
+        <div class="card-header">
+
+            <h2>Recent Projects</h2>
+
+            <a href="/projects">View All</a>
+
+        </div>
+
+        <div class="project-list">
+
+            <div class="project-item">
+
+                <div>
+
+                    <h3>E-Commerce Architecture</h3>
+
+                    <span>Updated 2 hours ago</span>
+
+                </div>
+
+                <span class="status success">
+
+                    Active
+
+                </span>
+
+            </div>
+
+            <div class="project-item">
+
+                <div>
+
+                    <h3>Banking Microservices</h3>
+
+                    <span>Yesterday</span>
+
+                </div>
+
+                <span class="status warning">
+
+                    Draft
+
+                </span>
+
+            </div>
+
+            <div class="project-item">
+
+                <div>
+
+                    <h3>Food Delivery System</h3>
+
+                    <span>3 days ago</span>
+
+                </div>
+
+                <span class="status success">
+
+                    Completed
+
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ==========================
+            QUICK ACTIONS
+    =========================== -->
+
+    <section class="dashboard-card quick-actions">
+
+        <div class="card-header">
+
+            <h2>Quick Actions</h2>
+
+        </div>
+
+        <div class="action-grid">
+
+            <button class="action-btn" data-action="new">
+
+                <i data-lucide="plus"></i>
+
+                <span>New Project</span>
+
+            </button>
+
+            <button class="action-btn" data-action="simulate">
+
+                <i data-lucide="play-circle"></i>
+
+                <span>Run Simulation</span>
+
+            </button>
+
+            <button class="action-btn" data-action="report">
+
+                <i data-lucide="file-text"></i>
+
+                <span>Generate Report</span>
+
+            </button>
+
+            <button class="action-btn" data-action="download">
+
+                <i data-lucide="download"></i>
+
+                <span>Export</span>
+
+            </button>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- ==========================================
+                AI REVIEW
+========================================== -->
+
+<section class="dashboard-card ai-summary">
+
+    <div class="card-header">
+
+        <h2>AI Architecture Review</h2>
+
+        <span>Latest Analysis</span>
+
+    </div>
+
+    <div class="summary-box">
+
+        <div class="summary-score">
+
+            <h1>96%</h1>
+
+            <span>Overall Health</span>
+
+        </div>
+
+        <div class="summary-content">
+
+            <p>
+
+                Your architecture follows good design principles and is ready for production with a few recommended improvements.
+
+            </p>
+
+            <ul>
+
+                <li>✓ API Gateway configured correctly</li>
+
+                <li>✓ Database design is balanced</li>
+
+                <li>✓ Load balancing strategy detected</li>
+
+                <li>⚠ Cache layer recommended</li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+                RECENT ACTIVITY
+========================================== -->
+
+<section class="dashboard-card">
+
+    <div class="card-header">
+
+        <h2>Recent Activity</h2>
+
+    </div>
+
+    <div class="activity-list">
+
+        <div class="activity-item">
+
+            <i data-lucide="cpu"></i>
+
+            <div>
+
+                <h4>Architecture Updated</h4>
+
+                <span>10 minutes ago</span>
+
+            </div>
+
+        </div>
+
+        <div class="activity-item">
+
+            <i data-lucide="play-circle"></i>
+
+            <div>
+
+                <h4>Simulation Completed</h4>
+
+                <span>45 minutes ago</span>
+
+            </div>
+
+        </div>
+
+        <div class="activity-item">
+
+            <i data-lucide="file-text"></i>
+
+            <div>
+
+                <h4>Report Generated</h4>
+
+                <span>Today</span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ==========================================
+                FOOTER
+========================================== -->
+
+<footer class="dashboard-footer">
+
+    <p>
+
+        © 2026 Arc Studio • Software Architecture Simulator
+
+    </p>
+
+    <p>
+
+        Version 1.0.0
+
+    </p>
+
+</footer>
+
+
+</main>
+
+</div>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="/js/dashboard.js"></script>
+
+</body>
+</html>
