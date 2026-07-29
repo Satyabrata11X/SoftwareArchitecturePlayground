@@ -61,4 +61,25 @@ public class User {
     protected void onUpdate() {
         updatedAt = LocalDateTime.now();
     }
+
+    /**
+     * Returns the user's initials.
+     */
+    public String getInitials() {
+
+        if (fullName == null || fullName.isBlank()) {
+            return "";
+        }
+
+        String[] names = fullName.trim().split("\\s+");
+
+        if (names.length == 1) {
+            return names[0].substring(0, 1).toUpperCase();
+        }
+
+        return ("" +
+                names[0].charAt(0) +
+                names[names.length - 1].charAt(0))
+                .toUpperCase();
+    }
 }
