@@ -21,6 +21,51 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     private final JwtService jwtService;
     private final CustomUserDetailsService customUserDetailsService;
 
+//    @Override
+//    protected void doFilterInternal(
+//            HttpServletRequest request,
+//            HttpServletResponse response,
+//            FilterChain filterChain
+//    ) throws ServletException, IOException {
+//
+//        final String authHeader = request.getHeader("Authorization");
+//
+//        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
+//            filterChain.doFilter(request, response);
+//            return;
+//        }
+//
+//        final String jwt = authHeader.substring(7);
+//        final String userEmail = jwtService.extractUsername(jwt);
+//
+//        if (userEmail != null
+//                && SecurityContextHolder.getContext().getAuthentication() == null) {
+//
+//            UserDetails userDetails =
+//                    customUserDetailsService.loadUserByUsername(userEmail);
+//
+//            if (jwtService.isTokenValid(jwt, userDetails)) {
+//
+//                UsernamePasswordAuthenticationToken authenticationToken =
+//                        new UsernamePasswordAuthenticationToken(
+//                                userDetails,
+//                                null,
+//                                userDetails.getAuthorities()
+//                        );
+//
+//                authenticationToken.setDetails(
+//                        new WebAuthenticationDetailsSource()
+//                                .buildDetails(request)
+//                );
+//
+//                SecurityContextHolder.getContext()
+//                        .setAuthentication(authenticationToken);
+//            }
+//        }
+//
+//        filterChain.doFilter(request, response);
+//    }
+
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
@@ -35,32 +80,39 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return;
         }
 
-        final String jwt = authHeader.substring(7);
-        final String userEmail = jwtService.extractUsername(jwt);
+        try {
 
-        if (userEmail != null
-                && SecurityContextHolder.getContext().getAuthentication() == null) {
+            final String jwt = authHeader.substring(7);
+            final String userEmail = jwtService.extractUsername(jwt);
 
-            UserDetails userDetails =
-                    customUserDetailsService.loadUserByUsername(userEmail);
+            if (userEmail != null
+                    && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            if (jwtService.isTokenValid(jwt, userDetails)) {
+                UserDetails userDetails =
+                        customUserDetailsService.loadUserByUsername(userEmail);
 
-                UsernamePasswordAuthenticationToken authenticationToken =
-                        new UsernamePasswordAuthenticationToken(
-                                userDetails,
-                                null,
-                                userDetails.getAuthorities()
-                        );
+                if (jwtService.isTokenValid(jwt, userDetails)) {
 
-                authenticationToken.setDetails(
-                        new WebAuthenticationDetailsSource()
-                                .buildDetails(request)
-                );
+                    UsernamePasswordAuthenticationToken authenticationToken =
+                            new UsernamePasswordAuthenticationToken(
+                                    userDetails,
+                                    null,
+                                    userDetails.getAuthorities()
+                            );
 
-                SecurityContextHolder.getContext()
-                        .setAuthentication(authenticationToken);
+                    authenticationToken.setDetails(
+                            new WebAuthenticationDetailsSource()
+                                    .buildDetails(request)
+                    );
+
+                    SecurityContextHolder.getContext()
+                            .setAuthentication(authenticationToken);
+                }
             }
+
+        } catch (Exception e) {
+            // Ignore invalid or expired token.
+            // User can still access public endpoints or log in again.
         }
 
         filterChain.doFilter(request, response);

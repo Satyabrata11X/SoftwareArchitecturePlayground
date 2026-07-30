@@ -15,9 +15,7 @@ public class AuthService {
     private final JwtService jwtService;
     private final AuthenticationManager authenticationManager;
 
-
     // Register User
-
     public AuthResponse register(RegisterRequest request) {
 
         if (userService.existsByEmail(request.email())) {
@@ -42,11 +40,10 @@ public class AuthService {
         );
     }
 
-
     // Login User
-
     public AuthResponse login(LoginRequest request) {
 
+        // Authenticate user credentials
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         request.email(),
@@ -54,10 +51,13 @@ public class AuthService {
                 )
         );
 
+        // Fetch authenticated user
         User user = userService.findByEmail(request.email());
 
+        // Generate JWT token
         String token = jwtService.generateToken(user);
 
+        // Return response
         return new AuthResponse(
                 "Login successful.",
                 token
